@@ -14,6 +14,14 @@
                 display: block;
                 height: 100%;
             }
+            .row
+            {
+                margin: auto;
+                margin-top: 10px;
+                border: solid 1px #05a8ff;
+                width: 100%;
+
+            }
             .table
             {
                 margin-top: 10px;
@@ -32,6 +40,10 @@
             {
                 padding: 0;
                 margin: 2px;
+            }
+            .trover:hover
+            {
+                background: whitesmoke;
             }
         </style>
     </head>
@@ -66,7 +78,7 @@
                         $row[$key] = stripslashes($value);
                     }
                     $imagen_p = $row['imagen_p'];
-                    echo "<tr>";
+                    echo "<tr class='trover'>";
                     echo "<td valign='top'>" . nl2br($row['id_p']) . "</td>";
                     echo "<td valign='top'>" . "<img  width='75' height='75' src =" . $imagen_p . "/>" . "</td>";
                     echo "<td valign='top'>" . nl2br($row['nombre_p']) . "</td>";
@@ -82,8 +94,6 @@
                 echo "</table>";
                 ?>
             </div>
-
-
 
         </div>
     </body>
