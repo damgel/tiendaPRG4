@@ -66,6 +66,18 @@
                 <li><a href="../Catalogo.php">VerCatalogo2</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
             </ul>
+            <div>
+                <?php
+                session_start();
+                if (!empty($_SESSION['username'])) {
+                    $nombre = $_SESSION['username'];
+                    echo "<div>$nombre</div>";
+                    echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Salir</a>';
+                } else {
+                    header("Location: logon.php"); /* Redirect browser */
+                }
+                ?>
+            </div>
         </div>
-    </body> 
+    </body>
 </html>
