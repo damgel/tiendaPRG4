@@ -45,6 +45,33 @@ INSERT INTO `categorias` VALUES (1,'CAMISAS','2013-11-10','S'),(2,'ZAPATOS','201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cliente` (
+  `idcliente` int(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) COLLATE latin1_general_ci DEFAULT NULL,
+  `apellido` varchar(120) COLLATE latin1_general_ci DEFAULT NULL,
+  `usuario` varchar(50) COLLATE latin1_general_ci DEFAULT NULL,
+  `contrasenia` varchar(250) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (`idcliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cliente`
+--
+
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'jose','guillen','damgel','destiny'),(2,'ariel','ramirez','ary123','destiny123'),(3,'carlos','roberto','crobert','123456'),(4,'juan jose','ayala','juanjo','123456');
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `producto`
 --
 
@@ -89,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-15 23:41:05
+-- Dump completed on 2013-11-16 11:58:09
