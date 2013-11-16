@@ -4,13 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Agregar Producto</title>
         <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+        <script src="assets/js/jquery-v1.10.2.js"></script>
         <script src="http://malsup.github.com/jquery.form.js"></script>
         <style>
-            form { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }
-            #progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
-            #bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
-            #percent { position:absolute; display:inline-block; top:3px; left:48%; }
+            form { display: block; margin: 20px auto;  border-radius: 10px; padding: 15px }
         </style>
     </head>
     <body>
@@ -37,7 +34,7 @@
                 foreach ($_POST AS $key => $value) {
                     $_POST[$key] = $value;
                 }
-                $sql = "INSERT INTO `producto` (`nombre_p` ,  `descripcion_p` ,  `categoria_p` ,  `precio_p` ,  `activo_p` ,  `imagen_p`,  `fecha_p`   ) VALUES( '{$_POST['nombre_p']}' ,  '{$_POST['descripcion_p']}' ,  '{$_POST['categoria_p']}' ,  '{$_POST['precio_p']}' ,  '{$_POST['activo_p']}' , '$name_ok' ,  '{$_POST['fecha_p']}' ) ";
+                $sql = "INSERT INTO `producto` (`nombre_p` ,  `descripcion_p` ,  `categoria_p` ,   `marca_p` , `precio_p` ,  `costo_p` ,  `activo_p` ,  `imagen_p`,  `fecha_p`   ) VALUES( '{$_POST['nombre_p']}' ,  '{$_POST['descripcion_p']}' ,  '{$_POST['categoria_p']}' , '{$_POST['marca_p']}' ,  '{$_POST['precio_p']}' , '{$_POST['costo_p']}' ,  '{$_POST['activo_p']}' , '$name_ok' ,  now())";
                 mysql_query($sql) or die(mysql_error());
                 echo "<script>alert('$name_ok')</script>";
                 echo "Registro Agregado.<br />";
@@ -46,24 +43,22 @@
             ?>
 
             <form action='#' id="myform" method='POST' enctype="multipart/form-data"> 
-                <div><b>Nombre del Producto:</b><br /><input type='text' name='nombre_p' required/></div> 
-                <div><b>Descripcion del Producto:</b><br /><input type='text' name='descripcion_p' required/></div> 
-                <div><b>Categoria:</b><br><select name="categoria_p"><option>-seleccione-</option><?php include_once 'lstcategorias.php'; ?></select></div>
-                <div><b>Precio del Producto:</b><br /><input type='text' name='precio_p' required/></div> 
-                <div><b>Fecha:</b><br /><input type='date' name='fecha_p' required/></div> 
-                <div><b>Activo:</b><br /><input type='text' name='activo_p' required/></div>  
-                <input type="file" name="myfile">
-                <div><input type='submit' value='Agregar' /><input type='hidden' value='1' name='submitted' /></div> 
+                <fieldset>
+                    <div><input type="file" name="myfile"></div><br>
+                    <div><b>Nombre del Producto:</b><br /><input type='text' name='nombre_p' required/></div> 
+                    <div><b>Descripcion del Producto:</b><br /><input type='text' name='descripcion_p' required/></div> 
+                    <div><b>Categoria:</b><br><select name="categoria_p"><option>-seleccione-</option><?php include_once 'lstcategorias.php'; ?></select></div>
+                    <div><b>Marca:</b><br /><input type='text' name='marca_p' required/></div> 
+                    <div><b>Precio de Venta:</b><br /><input type='text' name='precio_p' required/></div> 
+                    <div><b>Precio de Costo:</b><br /><input type='text' name='costo_p' required/></div> 
+                    <div><select name="activo_p">
+                            <option value="S">Activo</option>
+                            <option value="N">No activo</option>
+                        </select></div>
+
+                    <div><input type='submit' value='Agregar' /><input type='hidden' value='1' name='submitted' /></div>
+                </fieldset>
             </form> 
-
-            <div id="progress">
-                <div id="bar"></div>
-                <div id="percent">0%</div >
-            </div>
-            <br/>
-
-            <div id="message"></div>
-
 
             <script>
                 $(document).ready(function()
