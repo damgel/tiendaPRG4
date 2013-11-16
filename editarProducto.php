@@ -12,6 +12,33 @@ and open the template in the editor.
     <body>
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor">
+            <?php
+            /*  CODIGO PARA ACTIVAR PRODUCTOS */
+            include_once 'clases/db_connect.php';
+            if (isset($_GET['activar'])) {
+                $activar_p = (int) $_GET['activar'];
+
+                foreach ($_POST AS $key => $value) {
+                    $_POST[$key] = mysql_real_escape_string($value);
+                }
+                $sql = "UPDATE `producto` SET  `activo_p` =  'S',  `fecha_p` =  now()  WHERE `id_p` = '$activar_p' ";
+                mysql_query($sql) or die(mysql_error());
+                echo 'PRODUCTO ACTIVADO<br>';
+                echo "<a href='administrarProductos.php'>Regresar</a>";
+            }
+            /*  CODIGO PARA DESACTIVAR PRODUCTOS */
+            if (isset($_GET['desactivar'])) {
+                $desactivar_p = (int) $_GET['desactivar'];
+
+                foreach ($_POST AS $key => $value) {
+                    $_POST[$key] = mysql_real_escape_string($value);
+                }
+                $sql = "UPDATE `producto` SET  `activo_p` =  'N',  `fecha_p` =  now()  WHERE `id_p` = '$desactivar_p' ";
+                mysql_query($sql) or die(mysql_error());
+                echo 'PRODUCTO DESACTIVADO<br>';
+                echo "<a href='administrarProductos.php'>Regresar</a>";
+            }
+            ?>
             <?
             include_once 'clases/db_connect.php';
             if (isset($_GET['id'])) {
@@ -22,8 +49,8 @@ and open the template in the editor.
                     }
                     $sql = "UPDATE `producto` SET  `imagen_p` =  '{$_POST['imagen_p']}' ,  `nombre_p` =  '{$_POST['nombre_p']}' ,  `descripcion_p` =  '{$_POST['descripcion_p']}' ,  `categoria_p` =  '{$_POST['categoria_p']}' ,  `precio_p` =  '{$_POST['precio_p']}' ,  `activo_p` =  '{$_POST['activo_p']}' ,  `existencia_p` =  '{$_POST['existencia_p']}' ,  `fecha_p` =  now() ,  `marca_p` =  '{$_POST['marca_p']}' ,  `costo_p` =  '{$_POST['costo_p']}'   WHERE `id_p` = '$id_p' ";
                     mysql_query($sql) or die(mysql_error());
-                    echo (mysql_affected_rows()) ? "Edited row.<br />" : "Nothing changed. <br />";
-                    echo "<a href='list.php'>Regresar</a>";
+                    echo (mysql_affected_rows()) ? "Producto Editado.<br />" : "Error al editar. <br />";
+                    echo "<a href='administrarProductos.php'>Regresar</a>";
                 }
                 $row = mysql_fetch_array(mysql_query("SELECT * FROM `producto` WHERE `id_p` = '$id_p' "));
                 ?>

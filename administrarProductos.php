@@ -28,7 +28,11 @@
                 margin-top: 20px;
                 margin-bottom: 20px;
             }
-
+            .divhr
+            {
+                padding: 0;
+                margin: 2px;
+            }
         </style>
     </head>
     <body>
@@ -72,7 +76,7 @@
                     echo "<td valign='top'>" . nl2br($row['precio_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['costo_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['activo_p']) . "</td>";
-                    echo "<td valign='top'><a href=editarProducto.php?id={$row['id_p']}>Editar</a> <a href=eliminarProducto.php?id={$row['id_p']}>Eliminar</a></td> ";
+                    echo "<td valign='top'><a href=editarProducto.php?activar={$row['id_p']}>Activar</a><br><a href=editarProducto.php?desactivar={$row['id_p']}>Desactivar</a><br><hr class='divhr'><a href=editarProducto.php?id={$row['id_p']}>Editar</a><br> <a href=eliminarProducto.php?id={$row['id_p']}>Eliminar</a></td> ";
                     echo "</tr>";
                 }
                 echo "</table>";
