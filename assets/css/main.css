@@ -1,0 +1,40 @@
+/* 
+    Document   : main.css
+    Created on : 08-nov-2013, 16:43:02
+    Author     : daMgeL
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body
+{
+    background: gainsboro;
+}
+.contenedor
+{
+    display: block;
+
+    background: #FFF;
+    height: 450px;
+    margin:auto;
+    width: 80%;
+}
+
+.panel
+{
+    width: 100px;
+    border: solid 2px #448ccb;
+
+    padding-right: 50px;
+}
+.contenedor-secundario
+{
+    display: inline-block;
+    float: right;
+    margin-left: auto;
+    margin-right: 500px;
+}
