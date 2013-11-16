@@ -44,7 +44,7 @@
         }
         // $value = $row['nombre_ct'];
         echo "<li class='categorias_li'";
-        echo "><a class'categorias_a' href=http://localhost:8001/principal2.php?id={$row['nombre_ct']}>" . nl2br($row['nombre_ct']);
+        echo "><a class'categorias_a' href=http://localhost:8001/Catalogo.php?id={$row['nombre_ct']}>" . nl2br($row['nombre_ct']);
         echo "</a></li>";
     }
 //echo     <a href=http://localhost:8001/principal2.php?categoria={$row['id_p']}>Editar</a>

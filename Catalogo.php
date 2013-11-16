@@ -492,11 +492,11 @@
         </style>
     </head>
     <body>
-
+        <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor">
             <div class="titulos">
                 <?php include_once 'li-categoria.php'; ?>
-                <br></br><h1><a href="principal2.php">Super Tienda</a></h1><h3><a href="carrito.php">Ver Carrito</a></h3>
+                <br></br><h1><a href="Catalogo.php">Super Tienda</a></h1><h3><a href="carrito.php">Ver Carrito</a></h3>
             </div>
             <div class="buscador">
                 <hr></hr>
@@ -522,7 +522,7 @@
             }
             if ((mysql_num_rows($consulta)) === 0) {
                 echo "<h1>Producto no encontrado! :'(</h1>";
-                echo "<h2><a href='principal2.php'>Regresar</a></h2>";
+                echo "<h2><a href='Catalogo.php'>Regresar</a></h2>";
             } else {
                 while ($filas = mysql_fetch_array($consulta)) {
                     $id = $filas['id_p'];
@@ -550,6 +550,7 @@
                                 <div class="action  hide-from-mobile">
                                     <p class="price"><?php echo "$" . $precio ?></p>
                                     <p>
+
                                         <form action="carrito.php" method="post" name="compra">
                                             <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
                                             <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />

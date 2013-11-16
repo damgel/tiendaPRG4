@@ -62,9 +62,8 @@
             <ul class="menu">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="../administrarProductos.php">Productos</a></li>
-                <li><a href="#">Categorias</a></li>
-                <li><a href="../principal.php">VerCatalogo 1</a></li>
-                <li><a href="../principal2.php">VerCatalogo2</a></li>
+                <li><a href="../li-categoria.php">Categorias</a></li>
+                <li><a href="../Catalogo.php">VerCatalogo2</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
             </ul>
         </div>
