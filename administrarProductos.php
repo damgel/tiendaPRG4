@@ -49,7 +49,9 @@
                 echo "<td><b>Nombre</b></td>";
                 echo "<td><b>Descripcion</b></td>";
                 echo "<td><b>Categoria</b></td>";
-                echo "<td><b>Precio</b></td>";
+                echo "<td><b>Marca</b></td>";
+                echo "<td><b>Precio Venta</b></td>";
+                echo "<td><b>Precio Costo</b></td>";
                 echo "<td><b>Activo</b></td>";
                 echo "<td><b>Mantenimiento</b></td>";
                 echo "</tr>";
@@ -66,7 +68,9 @@
                     echo "<td valign='top'>" . nl2br($row['nombre_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['descripcion_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['categoria_p']) . "</td>";
+                    echo "<td valign='top'>" . nl2br($row['marca_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['precio_p']) . "</td>";
+                    echo "<td valign='top'>" . nl2br($row['costo_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['activo_p']) . "</td>";
                     echo "<td valign='top'><a href=editarProducto.php?id={$row['id_p']}>Editar</a> <a href=eliminarProducto.php?id={$row['id_p']}>Eliminar</a></td> ";
                     echo "</tr>";
