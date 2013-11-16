@@ -62,7 +62,7 @@
             <ul class="menu">
                 <li><a href="#">Inicio</a></li>
                 <li><a href="../administrarProductos.php">Productos</a></li>
-                <li><a href="../li-categoria.php">Categorias</a></li>
+                <li><a href="../administrarCategorias.php">Categorias</a></li>
                 <li><a href="../Catalogo.php">VerCatalogo2</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
             </ul>
