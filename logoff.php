@@ -1,9 +1,13 @@
 <?php
-		session_start();
-		$_SESSION = array();
-		if(isset($_COOKIE[session_name()])) {
-			setcookie(session_name(), '', time()-300, '/');
-		}
-		session_destroy();
-	    header ("Location: logon.php");
+
+/**
+ * Clase que permite eliminar las sesiones activas para salir del sistema.
+ *
+ * @author daMgeL
+ */
+session_start();
+session_destroy();
+session_unset();
+echo '<h1>Cerrando Sesion</h1>';
+header("Location: logon.php"); /* redireccionar navegador */
 ?>

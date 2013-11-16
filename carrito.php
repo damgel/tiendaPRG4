@@ -24,7 +24,7 @@ include_once 'clases/db_connect.php';
 
             <h3>Productos en el carro:</h3>
             <?php
-            if (isset($_SESSION['usuario'])) {
+            if (isset($_SESSION['username'])) {
                 $actionFrm = "carrito.php";
                 ?>
                 <?php
@@ -90,7 +90,7 @@ include_once 'clases/db_connect.php';
                     ?>
                     <?php
                 } else {
-                    header("Location: Registrarse.php");
+                    header("Location: Logon.php");
                 }
                 ?>
                 <tr>

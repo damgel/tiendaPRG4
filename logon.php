@@ -1,37 +1,45 @@
-<?php 
-    require_once ("Includes/session.php");
-    require_once ("Includes/simplecms-config.php"); 
-    require_once ("Includes/connectDB.php");
-    include ("Includes/header.php");
+<?php
+include_once "clases/db_connect.php";
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    echo 'VALORES QUE SE INTRODUCEN EN LOS CAMPOS:<br>';
+    echo $username . ' <br>';
+    echo $password . '<br>';
+    $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE usuario = '$username' AND contrasenia = '$password' LIMIT 1");
 
-    if (isset($_POST['submit']))
-    {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $query = "SELECT id, username FROM users WHERE username = ? AND password = SHA(?) LIMIT 1";
-        $statement = $databaseConnection->prepare($query);
-        $statement->bind_param('ss', $username, $password);
-
-        $statement->execute();
-        $statement->store_result();
-
-        if ($statement->num_rows == 1)
-        {
-            $statement->bind_result($_SESSION['userid'], $_SESSION['username']);
-            $statement->fetch();
-            header ("Location: index.php");
+    if ($query >= 1) {
+        while ($row = mysql_fetch_array($query)) {
+            session_start();
+            $_SESSION['userid'] = $row{'idcliente'};
+            $_SESSION['username'] = $row{'nombre'};
+            header("Location: http://localhost:8001/Catalogo.php"); /* Si el usuario existe, direccionar a catalogo */
         }
-        else
-        {
-            echo "Username/password combination is incorrect.";
-        }
+    } else {
+        echo "Usuario/Contrasenia incorrectos.";
     }
+}
 ?>
+<style>
+    body
+    {
+        background: whitesmoke;
+    }
+    fieldset
+    {
+        background: white;
+    }
+    #main
+    {
+
+        width: 40%;
+        margin: auto;
+    }
+</style>
 <div id="main">
-    <h2>Log on</h2>
-        <form action="logon.php" method="post">
-            <fieldset>
+    <h2>Acceso a clientes</h2>
+    <form action="logon.php" method="post">
+        <fieldset>
             <legend>Log on</legend>
             <ol>
                 <li>
@@ -51,4 +59,3 @@
     </form>
 </div>
 </div> <!-- End of outer-wrapper which opens in header.php -->
-<?php include ("Includes/footer.php"); ?>
