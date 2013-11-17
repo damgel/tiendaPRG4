@@ -141,6 +141,21 @@
                 echo "</table>";
                 ?>
             </div>
+            <div class="royalties">
+                <style>
+                    .royalties
+                    {
+                        margin: auto;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        padding: 10px;
+                        border:solid 1px black;
+                        height: 100px;
+                        width: 90%;
+                    }
+                </style>
+                <?php include_once 'counts_productos.php'; ?>
+            </div>
 
         </div>
     </body>
