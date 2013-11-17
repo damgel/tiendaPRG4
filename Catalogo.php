@@ -21,12 +21,26 @@
                         <input type="text" name="buscar" id="buscar" /></td>
                         <input type="submit" name="Aceptar" id="Aceptar" value="Buscar" />
                     </div>
+                </form>
+                <form id="form2" name="form2" method="GET" action="">
                     <div>
-                        <label for="">Filtrar por: </label>
-                        <select name="" onchange="this.form.submit()">
-                            <option value="">seleccione</option>
-                            <option value="">Precio mas alto</option>
-                            <option value="">Precio mas bajo</option>
+                        <label for="">Precio: </label>
+                        <select name="price" onchange="this.form.submit();">
+                            <option value=""><?php echo $_SESSION['filtro'] ?></option>
+                            <option value="bajo">Precio mas bajo</option>
+                            <option value="alto">Precio mas alto</option>
+                        </select>
+                        <label for="">Color</label>
+                        <select name="color" onchange="this.form.submit();">
+                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
+                            <option value="c1">Blanco</option>
+                            <option value="c2">Negro</option>
+                        </select>
+                        <label for="">Tamanio</label>
+                        <select name="size" onchange="this.form.submit();">
+                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
                         </select>
                     </div>
                 </form>
@@ -36,21 +50,31 @@
             /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
 
             $consulta = mysql_query("select * from producto where activo_p='S'");
+            if (isset($_GET['price'])) {
+                $id_filtro = $_GET['price'];
+                if ($id_filtro == "bajo") {
+                    $_SESSION['filtro'] = "Filtro establecido";
+                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p asc");
+                } elseif ($id_filtro == "alto") {
+                    $_SESSION['filtro'] = "Filtro establecido";
+                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p desc");
+                }
+            }
             if (isset($_POST['buscar'])) {
                 $rango_inicio = '0';
                 $rango_fin = $_POST['buscar'];
-                // $consulta = mysql_query("select * from producto where (activo_p='S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p='S' and precio_p betwenn $rango_inicio and $rango_fin.%)");
-                $consulta = mysql_query("select * from producto where (activo_p='S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p='S' and precio_p like '%" . $_POST['buscar'] . "%') ");
+                // $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p = 'S' and precio_p betwenn $rango_inicio and $rango_fin.%)");
+                $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
             }
             /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL 
              * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $consulta = mysql_query("select * from producto where activo_p='S' and categoria_p like '%" . $id . "%'");
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and categoria_p like '%" . $id . "%'");
             }
 
             if ((mysql_num_rows($consulta)) === 0) {
-                echo "<h1>Producto no encontrado! :' ( </h1>";
+                echo "<h1>Producto no encontrado!:' ( </h1>";
                 echo "<h2><a href = 'Catalogo.php'>Regresar</a></h2>";
             } else {
                 while ($filas = mysql_fetch_array($consulta)) {
