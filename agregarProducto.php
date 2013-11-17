@@ -8,6 +8,19 @@
         <script src="http://malsup.github.com/jquery.form.js"></script>
         <style>
             form { display: block; margin: 20px auto;  border-radius: 10px; padding: 15px }
+            fieldset
+            {
+                *border-collapse: collapse; /* IE7 and lower */
+                border-spacing: 0; 
+                border: solid #ccc 1px;
+                -moz-border-radius: 6px;
+                -webkit-border-radius: 6px;
+                border-radius: 6px;
+                -webkit-box-shadow: 0 1px 1px #ccc;
+                -moz-box-shadow: 0 1px 1px #ccc;
+                box-shadow: 0 1px 1px #ccc;
+
+            }
         </style>
     </head>
     <body>

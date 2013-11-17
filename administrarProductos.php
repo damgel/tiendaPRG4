@@ -18,8 +18,17 @@
             {
                 margin: auto;
                 margin-top: 10px;
-                border: solid 1px #05a8ff;
+
                 width: 100%;
+
+                border-spacing: 0; 
+                border: solid #05a8ff 1px;
+                -moz-border-radius: 6px;
+                -webkit-border-radius: 6px;
+                border-radius: 6px;
+                -webkit-box-shadow: 0 1px 1px #05a8ff;
+                -moz-box-shadow: 0 1px 1px #05a8ff;
+                box-shadow: 0 1px 1px #05a8ff;
 
             }
             .table
@@ -27,6 +36,21 @@
                 margin-top: 10px;
                 width: 100%;
                 margin: auto;
+
+
+            }
+            table
+            {
+                *border-collapse: collapse; /* IE7 and lower */
+                border-spacing: 0; 
+                border: solid #ccc 1px;
+                -moz-border-radius: 6px;
+                -webkit-border-radius: 6px;
+                border-radius: 6px;
+                -webkit-box-shadow: 0 1px 1px #ccc;
+                -moz-box-shadow: 0 1px 1px #ccc;
+                box-shadow: 0 1px 1px #ccc;
+
 
             }
             .acciones
@@ -41,10 +65,33 @@
                 padding: 0;
                 margin: 2px;
             }
-            .trover:hover
-            {
-                background: whitesmoke;
+
+            th:first-child {
+                -moz-border-radius: 6px 0 0 0;
+                -webkit-border-radius: 6px 0 0 0;
+                border-radius: 6px 0 0 0;
             }
+
+            th:last-child {
+                -moz-border-radius: 0 6px 0 0;
+                -webkit-border-radius: 0 6px 0 0;
+                border-radius: 0 6px 0 0;
+            }
+
+            th:only-child{
+                -moz-border-radius: 6px 6px 0 0;
+                -webkit-border-radius: 6px 6px 0 0;
+                border-radius: 6px 6px 0 0;
+            }
+            .bordered tr:hover
+            {
+                background: #fbf8e9;
+                -o-transition: all 0.1s ease-in-out;
+                -webkit-transition: all 0.1s ease-in-out;
+                -moz-transition: all 0.1s ease-in-out;
+                -ms-transition: all 0.1s ease-in-out;
+                transition: all 0.1s ease-in-out;     
+            } 
         </style>
     </head>
     <body>
@@ -58,7 +105,7 @@
                 <?php
                 include_once 'clases/db_connect.php';
 
-                echo "<table class='table table-bordered table-condensed' >";
+                echo "<table class='bordered table-bordered table-condensed' >";
                 echo "<tr>";
                 echo "<td><b>Id</b></td>";
                 echo "<td><b>Imagen</b></td>";
@@ -88,7 +135,7 @@
                     echo "<td valign='top'>" . nl2br($row['precio_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['costo_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['activo_p']) . "</td>";
-                    echo "<td valign='top'><a href=editarProducto.php?activar={$row['id_p']}>Activar</a><br><a href=editarProducto.php?desactivar={$row['id_p']}>Desactivar</a><br><hr class='divhr'><a href=editarProducto.php?id={$row['id_p']}>Editar</a><br> <a href=eliminarProducto.php?id={$row['id_p']}>Eliminar</a></td> ";
+                    echo "<td valign='top'><a href=editarProducto.php?activar={$row['id_p']}>Activar</a><br><a href=editarProducto.php?desactivar={$row['id_p']}>Desactivar</a><br><hr class='divhr'><a href=editarProducto.php?id={$row['id_p']}>Editar</a><br> <a href=editarProducto.php?eliminar={$row['id_p']}>Eliminar</a></td> ";
                     echo "</tr>";
                 }
                 echo "</table>";

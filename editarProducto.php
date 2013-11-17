@@ -38,6 +38,15 @@ and open the template in the editor.
                 echo 'PRODUCTO DESACTIVADO<br>';
                 echo "<a href='administrarProductos.php'>Regresar</a>";
             }
+            /* CODIGO PARA ELIMINAR PRODUCTOS */
+            if (isset($_GET['eliminar'])) {
+                $eliminar_p = (int) $_GET['eliminar'];
+
+                mysql_query("DELETE FROM `producto` WHERE `id_p` = '$eliminar_p' ");
+                echo (mysql_affected_rows()) ? "Producto eliminado!.<br /> " : "El producto no se pudo eliminar.<br /> ";
+                echo 'PRODUCTO ELIMINADO<br>';
+                echo "<a href='administrarProductos.php'>Regresar</a>";
+            }
             ?>
             <?
             include_once 'clases/db_connect.php';
