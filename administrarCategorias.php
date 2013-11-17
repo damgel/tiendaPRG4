@@ -1,5 +1,7 @@
 <?php
 include_once 'clases/db_connect.php';
+
+/* CODIGO QUE SE EJECUTA AL ABRIR LA PAGINA Y POR DEFECTO LA CONFIGURA PARA GUARDAR */
 $btn_nombre = "Agregar Categoria";
 $btn_evento = "submitted";
 if (isset($_POST['submitted'])) {
@@ -11,7 +13,7 @@ if (isset($_POST['submitted'])) {
     echo "Categoria Agregada.<br />";
 }
 
-
+/* CODIGO QUE SE EJECUTA AL HACER CLIC EN EDITAR Y MODIFICA LA CONFIGURACION PARA MODIFICAR EN VEZ DE GUARDAR */
 if (isset($_GET['editar'])) {
     $btn_nombre = "Actualizar Categoria";
     $btn_evento = "editar";
@@ -26,6 +28,12 @@ if (isset($_GET['editar'])) {
         echo "<a href='list.php'>Regresar</a>";
     }
     $row = mysql_fetch_array(mysql_query("SELECT * FROM `categorias` WHERE `id_ct` = '$id_ct' "));
+}
+/* CODIGO QUE SE EJECUTA AL HACER CLIC EN ELIMINAR */
+if (isset($_GET['eliminar'])) {
+    $id_ct = (int) $_GET['eliminar'];
+    mysql_query("DELETE FROM `categorias` WHERE `id_ct` = '$id_ct' ");
+    echo (mysql_affected_rows()) ? "Categoria Eliminada.<br /> " : "Error al eliminar.<br /> ";
 }
 ?>
 <!DOCTYPE html>
@@ -110,10 +118,11 @@ if (isset($_GET['editar'])) {
 
                     echo "<table class='bordered table-bordered table-condensed' >";
                     echo "<tr>";
-                    echo "<td><b>Id Ct</b></td>";
-                    echo "<td><b>Nombre Ct</b></td>";
-                    echo "<td><b>Fecha Ct</b></td>";
-                    echo "<td><b>Activo Ct</b></td>";
+                    echo "<td><b>Id Categoria</b></td>";
+                    echo "<td><b>Nombra</b></td>";
+                    echo "<td><b>Ultima Edicion</b></td>";
+                    echo "<td><b>Activo</b></td>";
+                    echo "<td><b>Mantenimiento</b></td>";
                     echo "</tr>";
                     $result = mysql_query("SELECT * FROM `categorias`") or trigger_error(mysql_error());
                     while ($row = mysql_fetch_array($result)) {
@@ -125,7 +134,7 @@ if (isset($_GET['editar'])) {
                         echo "<td valign='top'>" . nl2br($row['nombre_ct']) . "</td>";
                         echo "<td valign='top'>" . nl2br($row['fecha_ct']) . "</td>";
                         echo "<td valign='top'>" . nl2br($row['activo_ct']) . "</td>";
-                        echo "<td valign='top'><a href=administrarCategorias.php?editar={$row['id_ct']}>Editar</a></td><td><a href=administrarCategorias.php?eliminar={$row['id_ct']}>Eliminar</a></td> ";
+                        echo "<td valign='top'><a href=administrarCategorias.php?editar={$row['id_ct']}>Editar</a><br><a href=administrarCategorias.php?eliminar={$row['id_ct']}>Eliminar</a></td> ";
                         echo "</tr>";
                     }
                     echo "</table>";
