@@ -1,24 +1,28 @@
 <?php
 include_once 'clases/db_connect.php';
+$btn_nombre = "Agregar Categoria";
+$btn_evento = "submited";
 if (isset($_POST['submitted'])) {
     foreach ($_POST AS $key => $value) {
         $_POST[$key] = mysql_real_escape_string($value);
     }
     $sql = "INSERT INTO `categorias` ( `nombre_ct` ,  `fecha_ct` ,  `activo_ct`  ) VALUES(  '{$_POST['nombre_ct']}' ,  now() ,  '{$_POST['activo_ct']}'  ) ";
     mysql_query($sql) or die(mysql_error());
-    echo "Registro Agregado.<br />";
+    echo "Categoria Agregada.<br />";
 }
 
 
 if (isset($_GET['editar'])) {
+    $btn_nombre = "Actualizar Categoria";
+    $btn_evento = "editar";
     $id_ct = (int) $_GET['editar'];
-    if (isset($_POST['submitted'])) {
+    if (isset($_POST['editar'])) {
         foreach ($_POST AS $key => $value) {
             $_POST[$key] = mysql_real_escape_string($value);
         }
         $sql = "UPDATE `categorias` SET  `nombre_ct` =  '{$_POST['nombre_ct']}' ,  `fecha_ct` =  now() ,  `activo_ct` =  '{$_POST['activo_ct']}'   WHERE `id_ct` = '$id_ct' ";
         mysql_query($sql) or die(mysql_error());
-        echo (mysql_affected_rows()) ? "Edited row.<br />" : "Nothing changed. <br />";
+        echo (mysql_affected_rows()) ? "Categoria Actualizada.<br />" : "Error al actualizar. <br />";
         echo "<a href='list.php'>Regresar</a>";
     }
     $row = mysql_fetch_array(mysql_query("SELECT * FROM `categorias` WHERE `id_ct` = '$id_ct' "));
@@ -93,7 +97,7 @@ if (isset($_GET['editar'])) {
                     <form action='' method='POST'> 
                         <div><b>Nombre Categoria:</b><br /><input type='text' name='nombre_ct' value='<?= stripslashes($row['nombre_ct']) ?>'required/></div> 
                         <div><b>Activo Categoria:</b><br /><input type='text' name='activo_ct' value='<?= stripslashes($row['activo_ct']) ?>' required/></div><br> 
-                        <div><input type='submit' value='Agregar Categoria' /><input type='hidden' value='1' name='submitted' /></div> 
+                        <div><input type='submit' value='<?php echo $btn_nombre ?>' /><input type='hidden' value='1' name='<?php echo $btn_evento ?>' /></div> 
                     </form>  
 
                 </div>
