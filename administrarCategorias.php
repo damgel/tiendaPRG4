@@ -1,7 +1,7 @@
 <?php
 include_once 'clases/db_connect.php';
 $btn_nombre = "Agregar Categoria";
-$btn_evento = "submited";
+$btn_evento = "submitted";
 if (isset($_POST['submitted'])) {
     foreach ($_POST AS $key => $value) {
         $_POST[$key] = mysql_real_escape_string($value);
