@@ -57,22 +57,30 @@
                 width: 80%;
                 margin: auto;
             }
+            .right-login
+            {
+                font-size: 18px;
+                display: block;
+                padding-top: 10px;
+                margin-left: 75%;
+                padding-left: 10%;
+
+            }
         </style>
         <div class="header">
             <ul class="menu">
-                <li><a href="#">Inicio</a></li>
+                <li><a href="../Catalogo.php">Inicio</a></li>
                 <li><a href="../administrarProductos.php">Productos</a></li>
                 <li><a href="../administrarCategorias.php">Categorias</a></li>
-                <li><a href="../Catalogo.php">VerCatalogo2</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
             </ul>
-            <div>
+            <div class="right-login">
                 <?php
                 session_start();
                 if (!empty($_SESSION['username'])) {
                     $nombre = $_SESSION['username'];
-                    echo "<div>$nombre</div>";
-                    echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Salir</a>';
+                    echo "$nombre";
+                    echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Cerra Sesion</a>';
                 } else {
                     header("Location: logon.php"); /* Redirect browser */
                 }

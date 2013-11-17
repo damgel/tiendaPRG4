@@ -13,7 +13,7 @@ and open the template in the editor.
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor">
             <?php
-            /*  CODIGO PARA ACTIVAR PRODUCTOS */
+            /*  CODIGO PARA ACTIVAR AL PASAR PARAMETROS DESDE EL PANEL DE PRODUCTOS */
             include_once 'clases/db_connect.php';
             if (isset($_GET['activar'])) {
                 $activar_p = (int) $_GET['activar'];
@@ -26,7 +26,7 @@ and open the template in the editor.
                 echo 'PRODUCTO ACTIVADO<br>';
                 echo "<a href='administrarProductos.php'>Regresar</a>";
             }
-            /*  CODIGO PARA DESACTIVAR PRODUCTOS */
+            /*  CODIGO PARA DESACTIVAR AL PASAR PARAMETROS DESDE EL PANEL DE PRODUCTOS */
             if (isset($_GET['desactivar'])) {
                 $desactivar_p = (int) $_GET['desactivar'];
 
@@ -38,7 +38,7 @@ and open the template in the editor.
                 echo 'PRODUCTO DESACTIVADO<br>';
                 echo "<a href='administrarProductos.php'>Regresar</a>";
             }
-            /* CODIGO PARA ELIMINAR PRODUCTOS */
+            /* CODIGO PARA ELIMINAR AL PASAR PARAMETROS DESDE EL PANEL DE PRODUCTOS */
             if (isset($_GET['eliminar'])) {
                 $eliminar_p = (int) $_GET['eliminar'];
 
@@ -49,6 +49,10 @@ and open the template in the editor.
             }
             ?>
             <?
+            /* CODIGO QUE POR DEFECTO AL CARGAR LA PAGINA PERMITE CARGAR LOS VALORES DEL PRODUCTO PASADO COMO PARAMETRO 
+             * Y A LA VEZ PERMITE ACTUALIZAR LA INFORMACION EN LA BASE DE DATOSS
+             * 
+             */
             include_once 'clases/db_connect.php';
             if (isset($_GET['id'])) {
                 $id_p = (int) $_GET['id'];
