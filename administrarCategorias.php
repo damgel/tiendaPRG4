@@ -2,6 +2,7 @@
 include_once 'clases/db_connect.php';
 
 /* CODIGO QUE SE EJECUTA AL ABRIR LA PAGINA Y POR DEFECTO LA CONFIGURA PARA GUARDAR */
+$header_nombre = "Agregar Nueva Categoria";
 $btn_nombre = "Agregar Categoria";
 $btn_evento = "submitted";
 if (isset($_POST['submitted'])) {
@@ -15,6 +16,7 @@ if (isset($_POST['submitted'])) {
 
 /* CODIGO QUE SE EJECUTA AL HACER CLIC EN EDITAR Y MODIFICA LA CONFIGURACION PARA MODIFICAR EN VEZ DE GUARDAR */
 if (isset($_GET['editar'])) {
+    $header_nombre = "Actualizar Categoria";
     $btn_nombre = "Actualizar Categoria";
     $btn_evento = "editar";
     $id_ct = (int) $_GET['editar'];
@@ -100,7 +102,7 @@ if (isset($_GET['eliminar'])) {
         <?php include_once 'Includes/header.php'; ?>
         <div class="container">
             <fieldset class="row1">
-                <legend>Agregar nueva categoria</legend>
+                <legend><?php echo $header_nombre ?></legend>
                 <div class="sub-row">
                     <form action='' method='POST'> 
                         <div><b>Nombre Categoria:</b><br /><input type='text' name='nombre_ct' value='<?= stripslashes($row['nombre_ct']) ?>'required/></div> 
