@@ -104,7 +104,10 @@ if (isset($_GET['eliminar'])) {
                 <div class="sub-row">
                     <form action='' method='POST'> 
                         <div><b>Nombre Categoria:</b><br /><input type='text' name='nombre_ct' value='<?= stripslashes($row['nombre_ct']) ?>'required/></div> 
-                        <div><b>Activo Categoria:</b><br /><input type='text' name='activo_ct' value='<?= stripslashes($row['activo_ct']) ?>' required/></div><br> 
+                        <div><b>Activo Categoria:</b><br /><select name="activo_ct">
+                                <option value="S">ACTIVA</option>
+                                <option value="N">NO ACTIVA</option>
+                            </select></div><br> 
                         <div><input type='submit' value='<?php echo $btn_nombre ?>' /><input type='hidden' value='1' name='<?php echo $btn_evento ?>' /></div> 
                     </form>  
 
