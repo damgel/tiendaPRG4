@@ -501,7 +501,7 @@
             </div>
             <div class="buscador">
                 <hr></hr>
-                <form id="form1" name="form1" method="post" action="">
+                <form id="form1" name="form1" method="POST" action="">
                     <div>
                         <label for="buscar" class="lbl-buscar">Buscar:</label>
                         <input type="text" name="buscar" id="buscar" /></td>

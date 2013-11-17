@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ver Productos</title>
+        <title>Administrar Productos</title>
         <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="assets/css/bootstrap.css">
         <script src="assets/js/jquery-v1.10.2.js"></script>
