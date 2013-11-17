@@ -1,6 +1,6 @@
 <?php include_once 'clases/db_connect.php'; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Catalogo de productos</title>
@@ -94,7 +94,7 @@
             }
 
             header {
-                height: 80px;
+                height: 60px;
             }
 
             #body, footer {
@@ -119,6 +119,7 @@
             }
             .contenedor
             {
+                padding-top: 0px;
                 width: 80%;
                 margin: auto;
             }
@@ -483,8 +484,9 @@
             }
             .titulos
             {
-                padding: 10px;
+                padding: 0px;
                 margin: auto;
+                height: 40px;
                 width: 80%;
             }
 
@@ -495,7 +497,7 @@
         <div class="contenedor">
             <div class="titulos">
                 <?php include_once 'li-categoria.php'; ?>
-                <br></br><h1><a href="Catalogo.php">Super Tienda</a></h1><h3><a href="carrito.php">Ver Carrito</a></h3>
+                <br><h1><a href="Catalogo.php">Super Tienda</a></h1><h3><a href="carrito.php">Ver Carrito</a></h3>
             </div>
             <div class="buscador">
                 <hr></hr>
@@ -509,19 +511,25 @@
             </div>
 
             <?php
-            /* Un id único, como: 4b3403665fea6 */
-            /* printf("NombreUnico: %s\r\n", uniqid()); */
+            /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
+
             $consulta = mysql_query("select * from producto where activo_p='S'");
             if (isset($_POST['buscar'])) {
-                $consulta = mysql_query("select * from producto where nombre_p like '%" . $_POST['buscar'] . "%'");
+                $rango_inicio = '0';
+                $rango_fin = $_POST['buscar'];
+                // $consulta = mysql_query("select * from producto where (activo_p='S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p='S' and precio_p betwenn $rango_inicio and $rango_fin.%)");
+                $consulta = mysql_query("select * from producto where (activo_p='S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p='S' and precio_p like '%" . $_POST['buscar'] . "%') ");
             }
+            /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL 
+             * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $consulta = mysql_query("select * from producto where categoria_p like '%" . $id . "%'");
+                $consulta = mysql_query("select * from producto where activo_ct='S' and categoria_p like '%" . $id . "%'");
             }
+
             if ((mysql_num_rows($consulta)) === 0) {
-                echo "<h1>Producto no encontrado! :'(</h1>";
-                echo "<h2><a href='Catalogo.php'>Regresar</a></h2>";
+                echo "<h1>Producto no encontrado! :' ( </h1>";
+                echo "<h2><a href = 'Catalogo.php'>Regresar</a></h2>";
             } else {
                 while ($filas = mysql_fetch_array($consulta)) {
                     $id = $filas['id_p'];
@@ -536,7 +544,8 @@
                         <ul id="products" data-role="listview" data-inset="true">
                             <li class="product">
 
-                                <img class="hide-from-desktop" src="<?php echo $imagen; ?>" alt="Imagen de @p.Name" />
+                                <img class="hide-from-desktop" src="<?php echo $imagen;
+                    ?>" alt="Imagen de @p.Name" />
 
                                 <div class="productInfo">
                                     <h3><?php echo $nombre ?></h3>
@@ -550,13 +559,13 @@
                                     <p class="price"><?php echo "$" . $precio ?></p>
                                     <p>
 
-                                        <form action="carrito.php" method="post" name="compra">
-                                            <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
-                                            <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
-                                            <input name="precio" type="hidden" value="<?php echo $precio ?>" />
-                                            <input name="cantidad" type="hidden" value="1" />
-                                            <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
-                                        </form>
+                                    <form action="carrito.php" method="post" name="compra">
+                                        <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
+                                        <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
+                                        <input name="precio" type="hidden" value="<?php echo $precio ?>" />
+                                        <input name="cantidad" type="hidden" value="1" />
+                                        <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
+                                    </form>
                                     </p>
                                 </div>
                             </li>
