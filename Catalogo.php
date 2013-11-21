@@ -25,14 +25,14 @@
                 <form id="form2" name="form2" method="GET" action="">
                     <div>
                         <label for="">Precio: </label>
-                        <select name="price" onchange="this.form.submit();">
+                        <select name="precio" onchange="this.form.submit();">
                             <option value=""><?php echo $_SESSION['filtro'] ?></option>
                             <option value="bajo">Precio mas bajo</option>
                             <option value="alto">Precio mas alto</option>
                         </select>
                         <label for="">Color</label>
                         <select name="color" onchange="this.form.submit();">
-                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
+                            <option value="BLANCO"><?php echo $_SESSION['filtro2'] ?></option>
                             <option value="c1">Blanco</option>
                             <option value="c2">Negro</option>
                         </select>
@@ -50,8 +50,8 @@
             /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
 
             $consulta = mysql_query("select * from producto where activo_p='S'");
-            if (isset($_GET['price'])) {
-                $id_filtro = $_GET['price'];
+            if (isset($_GET['precio'])) {
+                $id_filtro = $_GET['precio'];
                 if ($id_filtro == "bajo") {
                     $_SESSION['filtro'] = "Filtro establecido";
                     $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p asc");
