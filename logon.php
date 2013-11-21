@@ -2,7 +2,7 @@
 include_once "clases/db_connect.php";
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = sha1($_POST['password']);
     echo 'VALORES QUE SE INTRODUCEN EN LOS CAMPOS:<br>';
     echo $username . ' <br>';
     echo $password . '<br>';
