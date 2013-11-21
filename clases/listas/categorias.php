@@ -4,7 +4,7 @@
 /*
  * Código para mostrar datos dinámicamente en un combobox.
  */
-include_once 'clases/db_connect.php';
+include_once '../../clases/db_connect.php';
 //echo "<select><option value=>- Seleccione -</option>";
 $s = '"S"';
 $result = mysql_query("SELECT id_ct, nombre_ct FROM `categorias` where activo_ct=$s order by nombre_ct ASC") or trigger_error(mysql_error());

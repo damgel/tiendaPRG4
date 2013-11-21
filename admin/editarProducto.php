@@ -7,14 +7,14 @@ and open the template in the editor.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar Producto</title>
-        <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/main.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <?php include_once 'Includes/header.php'; ?>
+        <?php include_once '../Includes/header.php'; ?>
         <div class="contenedor">
             <?php
             /*  CODIGO PARA ACTIVAR AL PASAR PARAMETROS DESDE EL PANEL DE PRODUCTOS */
-            include_once 'clases/db_connect.php';
+            include_once '../clases/db_connect.php';
             if (isset($_GET['activar'])) {
                 $activar_p = (int) $_GET['activar'];
 

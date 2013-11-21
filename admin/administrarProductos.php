@@ -3,10 +3,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administrar Productos</title>
-        <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
-        <script src="assets/js/jquery-v1.10.2.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+        <link href="../assets/css/main.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap.css">
+        <script src="../assets/js/jquery-v1.10.2.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
         <style>
             .container{
                 background: white;
@@ -96,14 +96,14 @@
     </head>
     <body>
 
-        <?php include_once 'Includes/header.php'; ?>
+        <?php include_once '../Includes/header.php'; ?>
         <div class="container">
             <div class="row">
                 <div class="acciones">
                     <a href=agregarProducto.php class="btn-default btn-lg">Nuevo Producto</a>
                 </div>
                 <?php
-                include_once 'clases/db_connect.php';
+                include_once '../clases/db_connect.php';
 
                 echo "<table class='bordered table-bordered table-condensed' >";
                 echo "<tr>";
@@ -129,7 +129,7 @@
                     $imagen_p = $row['imagen_p'];
                     echo "<tr class='trover'>";
                     echo "<td valign='top'>" . nl2br($row['id_p']) . "</td>";
-                    echo "<td valign='top'>" . "<img  width='75' height='75' src =" . $imagen_p . "/>" . "</td>";
+                    echo "<td valign='top'>" . "<img  width='75' height='75' src =" . '../' . $imagen_p . "/>" . "</td>";
                     echo "<td valign='top'>" . nl2br($row['nombre_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['descripcion_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['categoria_p']) . "</td>";

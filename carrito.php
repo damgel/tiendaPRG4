@@ -111,7 +111,7 @@ include_once 'clases/db_connect.php';
                     </form>
                 </p>
             </div>
-            <p><a href="Catalogo.php">Volver</a></p>
+            <p><a href="index.php">Volver</a></p>
         </div>
     </body>
 </html>

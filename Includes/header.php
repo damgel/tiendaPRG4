@@ -11,7 +11,7 @@
                 padding-top: 0px;
                 background: whitesmoke;
                 border-bottom: 1px solid #e5e5e5;
-                height: 50px;
+                height: 30px;
                 width: 100%;
                 margin: auto;
             }
@@ -27,29 +27,29 @@
                 height: 30px;
                 list-style: none;
                 float: left;
-                padding: 10px;
+                padding: 5px;
             }
             .menu li:hover
             {
-                background: #cccccc;
-                background: -moz-linear-gradient(top,  #cccccc 0%, #eeeeee 99%);
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cccccc), color-stop(99%,#eeeeee));
-                background: -webkit-linear-gradient(top,  #cccccc 0%,#eeeeee 99%);
-                background: -o-linear-gradient(top,  #cccccc 0%,#eeeeee 99%);
-                background: -ms-linear-gradient(top,  #cccccc 0%,#eeeeee 99%);
-                background: linear-gradient(to bottom,  #cccccc 0%,#eeeeee 99%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#eeeeee',GradientType=0 );
+                
+                border-bottom: solid 2px #0051ff;
+                height: 20px;
+                padding: 5px;
+                background: white;
 
             }
             .menu li a
             {
-                padding-top: 30px;
-                color: black;
+                padding: 0px;
                 font-family: Helvetica, Sans Serif, Arial;
                 font-size: 16px;
                 font-weight: bold;
                 text-align: center;
                 text-decoration: none;  
+            }
+            .menu li a:hover
+            {
+                color: #ccc;
             }
             .contenedor
             {
@@ -59,7 +59,8 @@
             }
             .right-login
             {
-                font-size: 18px;
+                font-size: 16px;
+                font-weight: bold;
                 display: block;
                 padding-top: 10px;
                 margin-left: 75%;
@@ -69,9 +70,7 @@
         </style>
         <div class="header">
             <ul class="menu">
-                <li><a href="../Catalogo.php">Inicio</a></li>
-                <li><a href="../administrarProductos.php">Productos</a></li>
-                <li><a href="../administrarCategorias.php">Categorias</a></li>
+                <li><a href="../index.php">Inicio</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
             </ul>
             <div class="right-login">

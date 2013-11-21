@@ -1,5 +1,5 @@
 <?php
-include_once 'clases/db_connect.php';
+include_once '../clases/db_connect.php';
 
 /* CODIGO QUE SE EJECUTA AL ABRIR LA PAGINA Y POR DEFECTO LA CONFIGURA PARA GUARDAR */
 $header_nombre = "Agregar Nueva Categoria";
@@ -43,10 +43,10 @@ if (isset($_GET['eliminar'])) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Administrar Categorias</title>
-        <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
-        <script src="assets/js/jquery-v1.10.2.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+        <link href="../assets/css/main.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../assets/css/bootstrap.css">
+        <script src="../assets/js/jquery-v1.10.2.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
         <style>
             .container{
                 background: white;
@@ -99,7 +99,7 @@ if (isset($_GET['eliminar'])) {
         </style>
     </head>
     <body>
-        <?php include_once 'Includes/header.php'; ?>
+        <?php include_once '../Includes/header.php'; ?>
         <div class="container">
             <fieldset class="row1">
                 <legend><?php echo $header_nombre ?></legend>
@@ -119,7 +119,7 @@ if (isset($_GET['eliminar'])) {
                 <legend>Lista de categorias</legend>
                 <div class="sub-row">
                     <?php
-                    include_once 'clases/db_connect.php';
+                    include_once '../clases/db_connect.php';
 
                     echo "<table class='bordered table-bordered table-condensed' >";
                     echo "<tr>";

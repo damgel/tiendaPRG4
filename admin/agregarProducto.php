@@ -60,7 +60,7 @@
                     <div><input type="file" name="myfile"></div><br>
                     <div><b>Nombre del Producto:</b><br /><input type='text' name='nombre_p' required/></div> 
                     <div><b>Descripcion del Producto:</b><br /><input type='text' name='descripcion_p' required/></div> 
-                    <div><b>Categoria:</b><br><select name="categoria_p"><option>-seleccione-</option><?php include_once 'lstcategorias.php'; ?></select></div>
+                    <div><b>Categoria:</b><br><select name="categoria_p"><option>-seleccione-</option><?php include_once 'clases/listas/categorias.php'; ?></select></div>
                     <div><b>Marca:</b><br /><input type='text' name='marca_p' required/></div> 
                     <div><b>Precio de Venta:</b><br /><input type='text' name='precio_p' required/></div> 
                     <div><b>Precio de Costo:</b><br /><input type='text' name='costo_p' required/></div> 
