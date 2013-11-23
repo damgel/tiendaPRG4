@@ -13,15 +13,16 @@ $_SESSION['tamanio'];
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Catalogo de productos</title>
-
-        <link rel="stylesheet" href="assets/css/catalogo.css">
+        <link rel="stylesheet" href="assets/css/catalogo.css">  
         <link rel="stylesheet" href="assets/css/bootstrap.css">
-
+             
         <script src="assets/js/jquery-v1.10.2.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/holder.js"></script>
 
     </head>
+    <style>
+</style>
     <body>
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor-index">
