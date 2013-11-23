@@ -24,7 +24,7 @@ $_SESSION['tamanio'];
     </head>
     <body>
         <?php include_once 'Includes/header.php'; ?>
-        <div class="contenedor">
+        <div class="contenedor-index">
             <div class="titulos">
                 <?php include_once 'li-categoria.php'; ?><br>
                 <p  class="carrito"><a href="carrito.php">Ver Carrito</a></p>
