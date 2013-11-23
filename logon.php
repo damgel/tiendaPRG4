@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
             session_start();
             $_SESSION['userid'] = $row{'idcliente'};
             $_SESSION['username'] = $row{'nombre'};
-            header("Location: http://localhost:8001/Catalogo.php"); /* Si el usuario existe, direccionar a catalogo */
+            header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
         }
     } else {
         echo "Usuario/Contrasenia incorrectos.";

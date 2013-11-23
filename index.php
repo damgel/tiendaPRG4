@@ -63,8 +63,8 @@
             if (isset($_POST['buscar'])) {
                 $rango_inicio = '0';
                 $rango_fin = $_POST['buscar'];
-                // $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%') or (activo_p = 'S' and precio_p betwenn $rango_inicio and $rango_fin.%)");
-                $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
+                //$consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
+                $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '%" . $_POST['buscar'] . "%') ");
             }
             /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL 
              * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */

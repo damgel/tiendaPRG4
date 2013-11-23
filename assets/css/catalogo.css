@@ -37,7 +37,7 @@ nav, section {
 }
 
 body {
-    background: #fff url(../Images/bkg.png) repeat-x top left;
+    background: #fff;
     color: #696969;
     font-family: Tahoma, Verdana, Helvetica, Sans-Serif;
     font-size: .75em;
