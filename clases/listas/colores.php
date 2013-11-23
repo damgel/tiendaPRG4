@@ -16,7 +16,7 @@ while ($row = mysql_fetch_array($result)) {
     }
     echo "<option";
     $value = $row['nombre_cl'];
-    echo " value=$value>" . nl2br($row['nombre_cl']);
+    echo " name=$value value=$value>" . nl2br($row['nombre_cl']);
     echo "</option>";
 }
 //echo "</select";
