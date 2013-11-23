@@ -1,10 +1,26 @@
 <?php include_once 'clases/db_connect.php'; ?>
+
+<?php
+/* SESIONES Y  VARIABLES GLOBALES DE CONFIGURACION PARA ALMACENAR LOS CRITERIOS DE BUSQUEDA */
+$_SESSION['categoria'];
+$_SESSION['precio'];
+$_SESSION['color'];
+$_SESSION['tamanio'];
+//echo "LA CATEGORIA SELECCIONADA ES: ".$_SESSION['categoria'];
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Catalogo de productos</title>
+
         <link rel="stylesheet" href="assets/css/catalogo.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+        <script src="assets/js/jquery-v1.10.2.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/holder.js"></script>
+
     </head>
     <body>
         <?php include_once 'Includes/header.php'; ?>
@@ -14,63 +30,64 @@
                 <p  class="carrito"><a href="carrito.php">Ver Carrito</a></p>
             </div>
             <div class="buscador">
-                <hr></hr>
+                <hr>
                 <form id="form1" name="form1" method="POST" action="">
                     <div>
-                        <label for="buscar" class="lbl-buscar">Buscar:</label>
+                        <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
                         <input type="text" name="buscar" id="buscar" /></td>
                         <input type="submit" name="Aceptar" id="Aceptar" value="Buscar" />
                     </div>
                 </form>
-                <form id="form2" name="form2" method="GET" action="">
+                <form id="form2" name="form2" method="POST" action="index.php">
                     <div>
-                        <label for="">Precio: </label>
-                        <select name="precio" onchange="this.form.submit();">
-                            <option value=""><?php echo $_SESSION['filtro'] ?></option>
-                            <option value="bajo">Precio mas bajo</option>
-                            <option value="alto">Precio mas alto</option>
-                        </select>
+                        <label for="">Precio:</label><a href="index.php?id=alto" class="glyphicon glyphicon-arrow-up">alto</a><a href="index.php?id=bajo" class="glyphicon glyphicon-arrow-down">bajo</a>
                         <label for="">Color</label>
                         <select name="color" onchange="this.form.submit();">
-                            <option value="BLANCO"><?php echo $_SESSION['filtro2'] ?></option>
-                            <option value="c1">Blanco</option>
-                            <option value="c2">Negro</option>
-                        </select>
-                        <label for="">Tamanio</label>
-                        <select name="size" onchange="this.form.submit();">
-                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
-                            <option value="S">Small</option>
-                            <option value="M">Medium</option>
+                            <option>Seleccione:</option>
+                            <?php include_once 'clases/listas/colores.php'; ?>
                         </select>
                     </div>
                 </form>
+                <form id="form3" name="form2" method="GET" action="">
+                    <div>
+                        <label for="">Tamanio</label>
+                        <select name="size" onchange="this.form.submit();">
+                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
+                            <?php include_once 'clases/listas/tallas.php'; ?>
+                        </select>
+                    </div>
+                </form>
+
             </div>
 
             <?php
             /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
 
             $consulta = mysql_query("select * from producto where activo_p='S'");
-            if (isset($_GET['precio'])) {
-                $id_filtro = $_GET['precio'];
-                if ($id_filtro == "bajo") {
-                    $_SESSION['filtro'] = "Filtro establecido";
-                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p asc");
-                } elseif ($id_filtro == "alto") {
-                    $_SESSION['filtro'] = "Filtro establecido";
-                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p desc");
-                }
+            if (isset($_POST['color'])) {
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and color_p like '%".$_POST['color']."%'");
             }
+
             if (isset($_POST['buscar'])) {
                 $rango_inicio = '0';
                 $rango_fin = $_POST['buscar'];
                 //$consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
-                $consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '%" . $_POST['buscar'] . "%') ");
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and (nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '". $_POST['buscar']."') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
             }
-            /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL 
+            /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL  
              * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $consulta = mysql_query("select * from producto where activo_p = 'S' and categoria_p like '%" . $id . "%'");
+
+                if ($id == "bajo") {
+                    $_SESSION['filtro'] = "bajo";
+                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p asc");
+                } elseif ($id == "alto") {
+//                    $_SESSION['filtro'] = "Filtro establecido";
+                    $_SESSION['filtro'] = "alto";
+                    $consulta = mysql_query("select * from producto where activo_p = 'S' order by precio_p desc");
+                }
             }
 
             if ((mysql_num_rows($consulta)) === 0) {
@@ -82,11 +99,14 @@
                     $imagen = $filas['imagen_p'];
                     $nombre = $filas['nombre_p'];
                     $desc = $filas['descripcion_p'];
+                     $marca = $filas['marca_p'];
+                    $talla = $filas['tamanio_p'];
                     $precio = $filas['precio_p'];
                     $enStock = $filas['existencia_p'];
                     $fecha = $filas['fecha_p'];
                     ?>
                     <div id="productsWrapper">
+
                         <ul id="products" data-role="listview" data-inset="true">
                             <li class="product">
                                 <img class="hide-from-desktop" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
@@ -94,6 +114,8 @@
                                     <h3><?php echo $nombre ?></h3>
                                     <img class="product-image hide-from-mobile" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
                                     <p class="description"><?php echo $desc ?></p>
+                                    <p class="description"><?php echo $marca ?></p>
+                                    <p class="description"><?php echo $talla ?></p>
                                     <p class="price hide-from-desktop"><?php echo $precio ?></p>                    
                                 </div>
                                 <!-- Desktop only -->
