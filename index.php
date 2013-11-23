@@ -114,9 +114,9 @@ $_SESSION['tamanio'];
                                 <div class="productInfo">
                                     <h3><?php echo $nombre ?></h3>
                                     <img class="product-image hide-from-mobile" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
-                                    <p class="description"><?php echo $desc ?></p>
-                                    <p class="description">Marca:<?php echo $marca ?></p>
-                                    <p class="description">Tamanio:<?php echo $talla ?></p>
+                                    <p class="description"><span class="bolder-title"></span><?php echo $desc ?></p>
+                                    <p class="description"><span class="bolder-title">Marca:</span><?php echo $marca ?></p>
+                                    <p class="description"><span class="bolder-title">Tamanio:</span><?php echo $talla ?></p>
                                     <p class="price hide-from-desktop"><?php echo $precio ?></p>                    
                                 </div>
                                 <!-- Desktop only -->
