@@ -157,7 +157,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (3,'Images/productos/zapato1.jpg','zapatos','calidad mundial garantizada','ZAPATOS',36.17,'S',250,'2013-11-21','polo',15,'SMALL','NEGRO'),(13,'Images/productos/527eb966d64ba102506.jpg','camisa sport','testing testing testing ','CAMISAS',17.25,'S',250,'2013-11-19','adidas',10,NULL,'AZUL'),(14,'Images/productos/5280096c4410611-(70)b.jpg','New Jacket','three pieces jacket','CAMISAS',120.99,'N',250,'2013-11-19','nike',10,NULL,'BLANCO'),(17,'Images/productos/5287c0fbec473Telefono.jpg','TELEFONO CLASICO','BRAND NEW PRODUCT','ELECTRODOMESTICO',125,'N',250,'2013-11-19','CLASSIC',10,NULL,'CELESTE'),(18,'Images/productos/5287c130cd9432566829399_86e0600664_m_thumb.jpg','producto de prueba','BRAND NEW PRODUCT','ELECTRODOMESTICO',54.0514,'N',250,'2013-11-19','Apple',10,NULL,'ROSADO'),(19,'Images/productos/5287c2e416fe7htc-desire_0.jpg','0000 TELEFONO','BRAND NEW TELEFONO','ELECTRODOMESTICO',125,'S',250,'2013-11-17','HTC',10,NULL,'AMARILLO'),(20,'Images/productos/5287c3c576f58ADS.JPG','BLACKBERRY','BLACKBERRY SD152-01','ELECTRODOMESTICO',150,'S',250,'2013-11-17','BB',10,NULL,'BLANCO'),(21,'Images/productos/528b919259dd5descarga.jpg','sombrero playa','palma','sombreros',28,'S',250,'2013-11-19','ninguna',8,NULL,'VERDE');
+INSERT INTO `producto` VALUES (3,'Images/productos/zapato1.jpg','zapatos','calidad mundial garantizada','ZAPATOS',36.17,'S',250,'2013-11-21','polo',15,'SMALL','NEGRO'),(13,'Images/productos/527eb966d64ba102506.jpg','camisa sport','testing testing testing ','CAMISAS',17.25,'S',250,'2013-11-21','adidas',10,'SMALL','AZUL'),(14,'Images/productos/5280096c4410611-(70)b.jpg','New Jacket','three pieces jacket','CAMISAS',120.99,'S',250,'2013-11-23','nike',10,'MEDIUM','BLANCO'),(17,'Images/productos/5287c0fbec473Telefono.jpg','TELEFONO CLASICO','BRAND NEW PRODUCT','ELECTRODOMESTICO',125,'S',0,'2013-11-23','CLASSIC',10,'SMALL','CELESTE'),(18,'Images/productos/5287c130cd9432566829399_86e0600664_m_thumb.jpg','producto de prueba','BRAND NEW PRODUCT','ELECTRODOMESTICO',54.0514,'S',250,'2013-11-23','Apple',10,'MEDIUM','ROSADO'),(19,'Images/productos/5287c2e416fe7htc-desire_0.jpg','0000 TELEFONO','BRAND NEW TELEFONO','ELECTRODOMESTICO',125,'S',250,'2013-11-17','HTC',10,NULL,'AMARILLO'),(20,'Images/productos/5287c3c576f58ADS.JPG','BLACKBERRY','BLACKBERRY SD152-01','ELECTRODOMESTICO',150,'S',250,'2013-11-17','BB',10,NULL,'BLANCO'),(21,'Images/productos/528b919259dd5descarga.jpg','sombrero playa','palma','sombreros',28,'S',250,'2013-11-19','ninguna',8,NULL,'VERDE');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-21 14:36:25
+-- Dump completed on 2013-11-23 12:25:14
