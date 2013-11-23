@@ -19,5 +19,5 @@ while ($row = mysql_fetch_array($result)) {
     echo " value=$value>" . nl2br($row['nombre_ta']);
     echo "</option>";
 }
-//echo "</select";
+//echo "</select>";
 ?>
