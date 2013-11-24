@@ -57,6 +57,34 @@ include_once 'clases/db_connect.php';
                         }
                     }
                 }
+                /* BEGIN CODIGO PARA ELIMINAR UN ITEM DEL ARREGLO DE PRODUCTOS */
+                if (isset($_GET['q'])) {
+                    $var_q = $_GET['q'];
+//                    foreach ($_SESSION['carrito'] as $value) {
+//                        echo $value['id'] . "<br/>\n";
+//                        //echo "<script>alert('$var_q')</script>";
+//                        if ($value['id'] == $var_q) {
+//                            echo "<script>alert('ITEM ENCONTRADO.$var_q')</script>";
+//                            unset($mi_carrito[$var_q]);
+//                            if (isset($mi_carrito)) {
+//                                $_SESSION['carrito'] = $mi_carrito;
+//                            }
+//                        }
+//                    }
+                    // ESTE ELIMINA CORRECTAMENRTE unset($mi_carrito[0]);
+                    unset($mi_carrito[i][$var_q]);
+                    $ix = 0;
+                    foreach ($mi_carrito as $value) {
+                        $ix++;
+                        if ($value == $var_q) {
+                            unset($mi_carrito[$ix]);
+                            //echo $value[$ix]."<br />\n";
+                        }
+                        echo "Value: $mi_carrito[$ix][$var_q]<br />\n";
+                    }
+                }
+
+                /* END CODIGO PARA ELIMINAR DEL ARREGLO */
                 if (isset($mi_carrito))
                     $_SESSION['carrito'] = $mi_carrito;
                 ?>
@@ -68,6 +96,7 @@ include_once 'clases/db_connect.php';
                         <td width="43" bgcolor="#73B9FF">PRECIO</td>
                         <td width="43" bgcolor="#73B9FF">CANTIDAD</td>
                         <td width="126" bgcolor="#73B9FF">SUBTOTAL</td>
+                        <td width="126" bgcolor="#73B9FF">Elimar</td>
                     </tr>
                     <?php
                     if (isset($mi_carrito)) {
@@ -78,11 +107,14 @@ include_once 'clases/db_connect.php';
                                 <td bgcolor="#FFFADD"><?php echo $mi_carrito[$i]['nombre'] ?></td>
                                 <td bgcolor="#FFFADD"><?php echo $mi_carrito[$i]['precio'] ?></td>
                                 <td bgcolor="#FFFADD"><?php echo $mi_carrito[$i]['cantidad'] ?></td>
+
                                 <?php
                                 $subtotal = $mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad'];
                                 $total = $total + $subtotal;
                                 ?>
                                 <td bgcolor="#FFFADD"><?php echo $subtotal ?></td>
+                                <td bgcolor="#FFFADD"><a href="<?php echo 'carrito.php?q=' . $mi_carrito[$i][$var=$i] ?>" >Quitar</a></td>
+                                <td> <?php var_dump($mi_carrito[$i]); ?></td>
                             </tr>
                             <?php
                         }

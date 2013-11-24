@@ -15,14 +15,14 @@ $_SESSION['tamanio'];
         <title>Catalogo de productos</title>
         <link rel="stylesheet" href="assets/css/catalogo.css">  
         <link rel="stylesheet" href="assets/css/bootstrap.css">
-             
+
         <script src="assets/js/jquery-v1.10.2.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/holder.js"></script>
 
     </head>
     <style>
-</style>
+    </style>
     <body>
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor-index">
@@ -66,14 +66,14 @@ $_SESSION['tamanio'];
 
             $consulta = mysql_query("select * from producto where activo_p='S'");
             if (isset($_POST['color'])) {
-                $consulta = mysql_query("select * from producto where activo_p = 'S' and color_p like '%".$_POST['color']."%'");
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and color_p like '%" . $_POST['color'] . "%'");
             }
 
             if (isset($_POST['buscar'])) {
                 $rango_inicio = '0';
                 $rango_fin = $_POST['buscar'];
                 //$consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
-                $consulta = mysql_query("select * from producto where activo_p = 'S' and (nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '". $_POST['buscar']."') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and (nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '" . $_POST['buscar'] . "') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
             }
             /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL  
              * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */
@@ -100,19 +100,17 @@ $_SESSION['tamanio'];
                     $imagen = $filas['imagen_p'];
                     $nombre = $filas['nombre_p'];
                     $desc = $filas['descripcion_p'];
-                     $marca = $filas['marca_p'];
+                    $marca = $filas['marca_p'];
                     $talla = $filas['tamanio_p'];
                     $precio = $filas['precio_p'];
                     $enStock = $filas['existencia_p'];
                     $fecha = $filas['fecha_p'];
                     ?>
                     <div id="productsWrapper">
-
                         <ul id="products" data-role="listview" data-inset="true">
                             <li class="product">
                                 <img class="hide-from-desktop" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
                                 <div class="productInfo">
-                                    
                                     <img class="product-image hide-from-mobile" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
                                     <h3><?php echo $nombre ?></h3>
                                     <p class="description"><span class="bolder-title"></span><?php echo $desc ?></p>
@@ -123,7 +121,7 @@ $_SESSION['tamanio'];
                                 <!-- Desktop only -->
                                 <div class="action  hide-from-mobile">
                                     <p class="price"><?php echo "$" . $precio ?>
-                                    <form action="carrito.php" method="post" name="compra">
+                                    <form action="cesta.php" method="post" name="compra">
                                         <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
                                         <input name="precio" type="hidden" value="<?php echo $precio ?>" />

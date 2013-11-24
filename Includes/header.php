@@ -71,6 +71,7 @@
         <div class="header">
             <ul class="menu">
                 <li><a href="../index.php">Inicio</a></li>
+                <li><a href="../cesta.php">Cesta</a></li>
                 <li><a href="../carrito.php">VerCarrito</a></li>
                 <li><a href="../admin/administrarProductos.php">PANEL ADMINISTRATIVO</a></li>
             </ul>
