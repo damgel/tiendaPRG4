@@ -36,25 +36,38 @@ if (isset($_GET['q'])) {
             font-weight: bold;
             text-align: right;
         }
+        .contenedor
+        {
+            border:solid 2px #ccc;
+            display:block;
+            margin:auto;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: white;
+        }
+
     </style>
     <body>
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor">
 
+
             <?php
             include_once 'clases/db_connect.php';
-            echo "<table border=1 >";
+            echo "<table class='table table-bordered table-condensed'>";
+
             echo "<tr>";
-            echo "<td><b>Idcarrito</b></td>";
-            echo "<td><b>Id P</b></td>";
-            echo "<td><b>Id U</b></td>";
+            //echo "<td><b>Idcarrito</b></td>";
+            //echo "<td><b>Id P</b></td>";
+            //echo "<td><b>Id U</b></td>";
             echo "<td><b>Id Orden</b></td>";
-            echo "<td><b>Nombre</b></td>";
+            echo "<td><b>Producto</b></td>";
             echo "<td><b>Precio</b></td>";
             echo "<td><b>Cantidad</b></td>";
             echo "<td><b>Subtotal</b></td>";
             echo "<td><b>Items</b></td>";
             echo "</tr>";
+
             $usuario = $_SESSION['userid'];
             $result = mysql_query("SELECT * FROM `carrito` where id_u=$usuario") or trigger_error(mysql_error());
             while ($row = mysql_fetch_array($result)) {
@@ -62,9 +75,9 @@ if (isset($_GET['q'])) {
                     $row[$key] = stripslashes($value);
                 }
                 echo "<tr>";
-                echo "<td valign='top'>" . nl2br($row['idcarrito']) . "</td>";
-                echo "<td valign='top'>" . nl2br($row['id_p']) . "</td>";
-                echo "<td valign='top'>" . nl2br($row['id_u']) . "</td>";
+                // echo "<td valign='top'>" . nl2br($row['idcarrito']) . "</td>";
+                //echo "<td valign='top'>" . nl2br($row['id_p']) . "</td>";
+                //echo "<td valign='top'>" . nl2br($row['id_u']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['id_orden']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['nombre']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['precio']) . "</td>";
@@ -72,7 +85,7 @@ if (isset($_GET['q'])) {
                 echo "<td valign='top'>" . nl2br($row['subtotal']) . "</td>";
                 echo "<td valign='top'><a href=cesta.php?q={$row['idcarrito']}>Quitar Item</a></td> ";
                 echo "</tr>";
-                
+
             }
             echo "</table>";
             ?>

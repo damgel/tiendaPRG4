@@ -121,11 +121,11 @@ $_SESSION['tamanio'];
                                 <!-- Desktop only -->
                                 <div class="action  hide-from-mobile">
                                     <p class="price"><?php echo "$" . $precio ?>
-                                    <form action="cesta.php" method="post" name="compra">
+                                    <form action="cesta.php" class="frmCarrito" method="post" name="compra">
                                         <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
                                         <input name="precio" type="hidden" value="<?php echo $precio ?>" />
-                                        <input name="cantidad" type="hidden" value="1" />
+                                        <input name="cantidad" type="text" value="1"  required/>
                                         <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
                                     </form>
                                     </p>

@@ -37,7 +37,7 @@ nav, section {
 }
 
 body {
-    
+
     background-color: #e4eef2;
     color: #696969;
     font-family: Tahoma, Verdana, Helvetica, Sans-Serif;
@@ -76,7 +76,7 @@ input[type=text]
 }
 
 input[type=submit] {
-    
+
     width: 25%;
     height: 35px;
     padding: 0;
@@ -241,14 +241,14 @@ div#featuredProduct img {
 }
 
 .product .productInfo {
-   border: 1px solid #eee;
+    border: 1px solid #eee;
     height: 300px;
     overflow: hidden;
     background-image: linear-gradient( #ffffff , #e5eecc 100px);
 }
 
 .product h3 {
-    
+
     font-size: 16px;
     color: #4FA5C0;
     font-weight: bolder;
@@ -281,7 +281,7 @@ div#featuredProduct img {
 .product .price {
     float: left;
     font-size: 1.5em;
-    margin: 0;
+    margin: 3px;
 }
 
 .product input[type=submit] {
@@ -289,17 +289,25 @@ div#featuredProduct img {
     padding: 2px 7px;
 }
 
-
+.frmCarrito input[type=text]
+{
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bolder;
+    height: 25px;
+    width: 100px;
+}
 form .order-button {
-    
+
     /* background: #27ae60; */
     background: transparent;
     color: #000;
     text-decoration: none;
-    
+
     border-radius: 10px;
     border: 1px solid #cc9900;
-    
+
     cursor: pointer;
     height: 25px;
     font-size: 12px;
@@ -498,9 +506,9 @@ fieldset textarea {
 }
 .buscador
 {
-    
+
     margin-bottom: 10px;
-    
+
 }
 
 .lbl-buscar
