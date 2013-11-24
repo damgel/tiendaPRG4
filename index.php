@@ -32,7 +32,7 @@ $_SESSION['tamanio'];
             </div>
             <div class="buscador">
                 <hr>
-                <form id="form1" name="form1" method="POST" action="">
+                <form id="form1"  name="form1" method="POST" action="">
                     <div>
                         <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
                         <input type="text" name="buscar" id="buscar" /></td>
@@ -112,8 +112,9 @@ $_SESSION['tamanio'];
                             <li class="product">
                                 <img class="hide-from-desktop" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
                                 <div class="productInfo">
-                                    <h3><?php echo $nombre ?></h3>
+                                    
                                     <img class="product-image hide-from-mobile" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $nombre ?>" />
+                                    <h3><?php echo $nombre ?></h3>
                                     <p class="description"><span class="bolder-title"></span><?php echo $desc ?></p>
                                     <p class="description"><span class="bolder-title">Marca:</span><?php echo $marca ?></p>
                                     <p class="description"><span class="bolder-title">Tamanio:</span><?php echo $talla ?></p>
