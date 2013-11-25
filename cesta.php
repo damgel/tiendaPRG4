@@ -10,14 +10,14 @@ if (isset($_POST['id_txt'])) {
     }
     $usuario = $_SESSION['userid'];
     $sub_total = $_POST['precio'] * $_POST['cantidad'];
-    $sql = "INSERT INTO `carrito` (`id_p` ,  `id_u` ,  `id_orden` ,  `nombre` ,  `precio` ,  `cantidad` ,  `subtotal`  ) VALUES('{$_POST['id_txt']}' ,  $usuario ,  '{$_POST['id_orden']}' ,  '{$_POST['nombre']}' ,  '{$_POST['precio']}' ,  '{$_POST['cantidad']}' ,  $sub_total  ) ";
+    $sql = "INSERT INTO `carrito` (`id_p` ,  `id_u` ,  `nombre` ,  `precio` ,  `cantidad` ,  `subtotal`  ) VALUES('{$_POST['id_txt']}' ,  $usuario , '{$_POST['nombre']}' ,  '{$_POST['precio']}' ,  '{$_POST['cantidad']}' ,  $sub_total  ) ";
     mysql_query($sql) or die(mysql_error());
     echo "Producto Agregado al .<br />";
     $evalSubmit = 0;
 }
 if (isset($_GET['q'])) {
     $eliminar_item = (int) $_GET['q'];
-    mysql_query("DELETE FROM `carrito` WHERE `idcarrito` = '$eliminar_item' ");
+    mysql_query("DELETE FROM `carrito` WHERE `id_p` = '$eliminar_item' ");
     echo 'PRODUCTO ELIMINADO<br>';
 }
 ?>
@@ -31,6 +31,13 @@ if (isset($_GET['q'])) {
         <script src="assets/js/bootstrap.min.js"></script>
     </head>
     <style>
+        .total
+        {
+            padding-right: 50px;
+         
+            text-align: right;
+            font-size: 24px;   
+        }
         .total-pay
         {
             font-weight: bold;
@@ -45,6 +52,14 @@ if (isset($_GET['q'])) {
             padding: 25px;
             background-color: white;
         }
+        .procesar-compra input[type=submit]
+        {
+            
+            font-size: 20px;
+            width: 250px;
+            height: 60px;
+        }
+
 
     </style>
     <body>
@@ -60,7 +75,7 @@ if (isset($_GET['q'])) {
             //echo "<td><b>Idcarrito</b></td>";
             //echo "<td><b>Id P</b></td>";
             //echo "<td><b>Id U</b></td>";
-            echo "<td><b>Id Orden</b></td>";
+            //echo "<td><b>Id Orden</b></td>";
             echo "<td><b>Producto</b></td>";
             echo "<td><b>Precio</b></td>";
             echo "<td><b>Cantidad</b></td>";
@@ -69,7 +84,7 @@ if (isset($_GET['q'])) {
             echo "</tr>";
 
             $usuario = $_SESSION['userid'];
-            $result = mysql_query("SELECT id_orden, nombre, precio, sum(cantidad) as cantidad, sum(subtotal) as subtotal FROM `carrito` where id_u=$usuario group by nombre") or trigger_error(mysql_error());
+            $result = mysql_query("SELECT id_p, nombre, round(precio,2) as precio, sum(cantidad) as cantidad, round(sum(subtotal),2) as subtotal FROM `carrito` where id_u=$usuario group by nombre") or trigger_error(mysql_error());
             while ($row = mysql_fetch_array($result)) {
                 foreach ($row AS $key => $value) {
                     $row[$key] = stripslashes($value);
@@ -78,18 +93,29 @@ if (isset($_GET['q'])) {
                 // echo "<td valign='top'>" . nl2br($row['idcarrito']) . "</td>";
                 //echo "<td valign='top'>" . nl2br($row['id_p']) . "</td>";
                 //echo "<td valign='top'>" . nl2br($row['id_u']) . "</td>";
-                echo "<td valign='top'>" . nl2br($row['id_orden']) . "</td>";
+                //echo "<td valign='top'>" . nl2br($row['id_orden']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['nombre']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['precio']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['cantidad']) . "</td>";
                 echo "<td valign='top'>" . nl2br($row['subtotal']) . "</td>";
-                echo "<td valign='top'><a href=cesta.php?q={$row['idcarrito']}>Quitar Item</a></td> ";
+                echo "<td valign='top'><a href=cesta.php?q={$row['id_p']}>Quitar Item</a></td> ";
                 echo "</tr>";
-
             }
             echo "</table>";
             ?>
-
+            <div><?php
+                include_once 'clases/db_connect.php';
+                $query = "SELECT round(sum(subtotal),2) FROM carrito limit 0,1";
+                $result = mysql_query($query) or die(mysql_error());
+                while ($row = mysql_fetch_array($result)) {
+                    echo "<p class='total'>Total a pagar " . " = <b>$ " . $row['round(sum(subtotal),2)'] . "</b></p>";
+                    echo "<br />";
+                }
+                ?>
+                <form class="procesar-compra">
+                    <input type="submit" value="Procesar Compra">
+                </form>
+            </div>
         </div>
         <p><a href="index.php">Volver</a></p>
     </div>
