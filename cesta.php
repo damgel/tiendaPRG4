@@ -1,14 +1,3 @@
-
-<?php
-session_start();
-include_once 'clases/db_connect.php';
-/// CODIGO QUE SE PROCESA PARA ELIMINAR EL PRODUCTO ESPECIFICADO EN EL CARRITO
-if (isset($_GET['q'])) {
-    $eliminar_item = (int) $_GET['q'];
-    mysql_query("DELETE FROM `carrito` WHERE `id_p` = '$eliminar_item' ");
-    echo 'PRODUCTO ELIMINADO<br>';
-}
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,8 +40,11 @@ if (isset($_GET['q'])) {
 
     </style>
     <body>
-        <?php include_once 'Includes/header.php';
-        include_once 'clases/db_connect.php';?>
+        <?php
+        session_start();
+        include_once 'Includes/header.php';
+        include_once 'clases/db_connect.php';
+        ?>
         <div class="contenedor">
             <?php
             include_once 'clases/db_connect.php';
@@ -83,7 +75,7 @@ if (isset($_GET['q'])) {
             <div><?php
                 $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito limit 0,1";
                 $result = mysql_query($query) or die(mysql_error());
-                
+
                 while ($row = mysql_fetch_array($result)) {
                     $_SESSION['cantidad_productos'] = $row['cantidad'];
                     $cantidad_p = $_SESSION['cantidad_productos'];
