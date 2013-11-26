@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -103,15 +101,26 @@
                         $pivotCompra = 0;
                         //ID UNICO QUE SE GENERAL AL HACER CLIC EN PRICESAR COMPRA
                         $hash_compra = uniqid();
+                        $sqlu = "UPDATE`cliente` SET `compra_pendiente`='$hash_compra' where idcliente='$id_usuario'";
+                        mysql_query($sqlu) or die(mysql_error());
                         //, ESTE ID REPRESENTARA LA COMPRA PROCESADA EN LA TABLA "DETALLE DE COMPRAS"
                         while ($row = mysql_fetch_array($result)) {
+                            $nombre_p = $row['nombre'];
                             if ($pivotCompra == 0) {
                                 echo "NOMBRE " . " = <b>$ " . $row['nombre'] . "</b></p>";
+                                $nombre_p = $row['nombre'];
+                                $id_producto = $row['id_p'];
                                 //GUARDANDO LA COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
                                 $sql = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
                                 mysql_query($sql) or die(mysql_error());
                                 $pivotCompra = 1;
+                                $sql = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
+                                mysql_query($sql) or die(mysql_error());
+                                $sql = "INSERT INTO `detalles_compra` ( `cod_compra` ,  `id_u` ,  `nombre_p`,`fecha` ) VALUES(  '$hash_compra' ,  $id_usuario ,  '$nombre_p' ,  now()  ) ";
+                                mysql_query($sql) or die(mysql_error());
                             }
+                            $sqldp = "INSERT INTO `detalles_compra` ( `cod_compra` ,  `id_u` ,  `nombre_p`,`fecha` ) VALUES(  '$hash_compra' ,  $id_usuario ,  '$nombre_p' ,  now()  ) ";
+                            mysql_query($sqldp) or die(mysql_error());
                         }
                         echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
                     }
