@@ -3,9 +3,6 @@ include_once "clases/db_connect.php";
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = sha1($_POST['password']);
-    echo 'VALORES QUE SE INTRODUCEN EN LOS CAMPOS:<br>';
-    echo $username . ' <br>';
-    echo $password . '<br>';
     $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE usuario = '$username' AND contrasenia = '$password' LIMIT 1");
 
     if ($query >= 1) {
