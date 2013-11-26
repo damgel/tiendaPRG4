@@ -3,6 +3,7 @@ session_start();
 include_once 'clases/db_connect.php';
 ?>
 <?php
+/// CODIGO QUE RECIBE EL PRODUCTO ENVIADO DESDE EL CATALOGO Y LO GUARDA EN EL CARRITO DE COMPRAS
 if (isset($_POST['id_txt'])) {
     $evalSubmit = $_POST['id_txt'];
     foreach ($_POST AS $key => $value) {
@@ -12,9 +13,11 @@ if (isset($_POST['id_txt'])) {
     $sub_total = $_POST['precio'] * $_POST['cantidad'];
     $sql = "INSERT INTO `carrito` (`id_p` ,  `id_u` ,  `nombre` ,  `precio` ,  `cantidad` ,  `subtotal`  ) VALUES('{$_POST['id_txt']}' ,  $usuario , '{$_POST['nombre']}' ,  '{$_POST['precio']}' ,  '{$_POST['cantidad']}' ,  $sub_total  ) ";
     mysql_query($sql) or die(mysql_error());
-    echo "Producto Agregado al .<br />";
+    echo "Producto Agregado al CARRITO .<br />";
     $evalSubmit = 0;
 }
+
+/// CODIGO QUE SE PROCESA PARA ELIMINAR EL PRODUCTO ESPECIFICADO EN EL CARRITO
 if (isset($_GET['q'])) {
     $eliminar_item = (int) $_GET['q'];
     mysql_query("DELETE FROM `carrito` WHERE `id_p` = '$eliminar_item' ");
@@ -34,7 +37,7 @@ if (isset($_GET['q'])) {
         .total
         {
             padding-right: 50px;
-         
+
             text-align: right;
             font-size: 24px;   
         }
@@ -54,7 +57,7 @@ if (isset($_GET['q'])) {
         }
         .procesar-compra input[type=submit]
         {
-            
+
             font-size: 20px;
             width: 250px;
             height: 60px;
@@ -85,6 +88,8 @@ if (isset($_GET['q'])) {
 
             $usuario = $_SESSION['userid'];
             $result = mysql_query("SELECT id_p, nombre, round(precio,2) as precio, sum(cantidad) as cantidad, round(sum(subtotal),2) as subtotal FROM `carrito` where id_u=$usuario group by nombre") or trigger_error(mysql_error());
+
+
             while ($row = mysql_fetch_array($result)) {
                 foreach ($row AS $key => $value) {
                     $row[$key] = stripslashes($value);
@@ -105,15 +110,48 @@ if (isset($_GET['q'])) {
             ?>
             <div><?php
                 include_once 'clases/db_connect.php';
-                $query = "SELECT round(sum(subtotal),2) FROM carrito limit 0,1";
+                $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito limit 0,1";
+
                 $result = mysql_query($query) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
+                    $_SESSION['cantidad_productos'] = $row['cantidad'];
+                    $cantidad_p = $_SESSION['cantidad_productos'];
                     echo "<p class='total'>Total a pagar " . " = <b>$ " . $row['round(sum(subtotal),2)'] . "</b></p>";
+                    echo "<p class='total'>Productos " . " : <b> " . $row['cantidad'] . "</b></p>";
+                    //echo "<script>alert($cantidad_productos)</script>";
                     echo "<br />";
                 }
                 ?>
-                <form class="procesar-compra">
-                    <input type="submit" value="Procesar Compra">
+                <form class="procesar-compra" method="POST">
+                    <input name="id_txt" type="hidden" value="<?php echo $mi_carrito[$i]['id'] ?>" />
+                    <input name="nombre" type="hidden" value="<?php echo $mi_carrito[$i]['nombre'] ?>" />
+                    <input name="cantidad" type="hidden" value="<?php echo $mi_carrito[$i]['cantidad'] ?>" />
+                    <input name="total" type="hidden" value="<?php echo $subtotal ?>" />
+                    <input type="submit" value="Procesar Compra"><input type='hidden' value='1' name='submitted' />
+                    <?php
+                    //PROCESAR LOS PRODUCTOS AQUI
+
+                    include_once 'clases/db_connect.php';
+                    if (isset($_POST['submitted'])) {
+                        $id_usuario = $_SESSION['userid'];
+                        $query = "SELECT id_p,nombre, cantidad, subtotal nombre FROM carrito";
+                        $result = mysql_query($query) or die(mysql_error());
+                        $pivotCompra = 0;
+                        //ID UNICO QUE SE GENERAL AL HACER CLIC EN PRICESAR COMPRA
+                        $hash_compra = uniqid();
+                        //, ESTE ID REPRESENTARA LA COMPRA PROCESADA EN LA TABLA "DETALLE DE COMPRAS"
+                        while ($row = mysql_fetch_array($result)) {
+                            if ($pivotCompra == 0) {
+                                echo "NOMBRE " . " = <b>$ " . $row['nombre'] . "</b></p>";
+                                //GUARDANDO LA COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
+                                $sql = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
+                                mysql_query($sql) or die(mysql_error());
+                                $pivotCompra = 1;
+                            }
+                        }
+                        echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
+                    }
+                    ?>
                 </form>
             </div>
         </div>
