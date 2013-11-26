@@ -9,5 +9,5 @@ session_start();
 session_destroy();
 session_unset();
 echo '<h1>Cerrando Sesion</h1>';
-header("Location: logon.php"); /* redireccionar navegador */
+header("Location: index.php"); /* redireccionar navegador */
 ?>

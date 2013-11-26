@@ -31,7 +31,7 @@
             }
             .menu li:hover
             {
-                
+
                 border-bottom: solid 2px #0051ff;
                 height: 20px;
                 padding: 5px;
@@ -71,19 +71,22 @@
         <div class="header">
             <ul class="menu">
                 <li><a href="../index.php">Inicio</a></li>
-                <li><a href="../cesta.php">Cesta</a></li>
-                <li><a href="../carrito.php">VerCarrito</a></li>
-                <li><a href="../admin/administrarProductos.php">PANEL ADMINISTRATIVO</a></li>
+                <li><a href="../cesta.php">Carrito de compras</a></li>
+                <li><a href="../admin/administrarProductos.php">Panel Administrativo</a></li>
             </ul>
             <div class="right-login">
                 <?php
                 session_start();
+                $urlactual = $_SERVER['REQUEST_URI'];
                 if (!empty($_SESSION['username'])) {
                     $nombre = $_SESSION['username'];
                     echo "$nombre";
                     echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Cerra Sesion</a>';
+                    //echo "<script>alert('$urlactual')</script>";
+                } elseif ($urlactual == "/index.php") {
+                    
                 } else {
-                    header("Location: logon.php"); /* Redirect browser */
+                    header("Location: index.php"); /* Redirect browser */
                 }
                 ?>
             </div>

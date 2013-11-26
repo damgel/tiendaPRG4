@@ -1,21 +1,6 @@
 <?php
 
-session_start();
-require_once ("../clases/db_connect.php");
 
-function logged_on() {
-    return isset($_SESSION['userid']);
-}
-
-function confirm_is_admin() {
-    if (!logged_on()) {
-        header("Location: logon.php");
-    }
-
-    if (!is_admin()) {
-        header("Location: index.php");
-    }
-}
 
 function is_admin() {
     global $databaseConnection;

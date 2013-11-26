@@ -1,4 +1,17 @@
-
+<?
+include('clases/db_connect.php');
+if (isset($_POST['Enviar'])) {
+    foreach ($_POST AS $key => $value) {
+        $_POST[$key] = mysql_real_escape_string($value);
+    }
+    $cyp_password = sha1($_POST['contrasenia']);
+    $sql = "INSERT INTO `cliente` (`nombre` ,  `apellido` ,  `usuario` ,  `contrasenia` ,  `fecha_nac` ,  `correo` ,  `tel`  ) VALUES(  '{$_POST['nombre']}' ,  '{$_POST['apellido']}' ,  '{$_POST['usuario']}' ,  '$cyp_password' ,  '{$_POST['fecha_nac']}' ,  '{$_POST['correo']}' ,  '{$_POST['tel']}'  ) ";
+    mysql_query($sql) or die(mysql_error());
+    header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
+} else {
+    //header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,19 +29,7 @@
 
     </style>
     <body>
-
-
-        <?
-        include('clases/db_connect.php');
-        if (isset($_POST['Enviar'])) {
-            foreach ($_POST AS $key => $value) {
-                $_POST[$key] = mysql_real_escape_string($value);
-            }
-            $cyp_password = sha1($_POST['contrasenia']);
-            $sql = "INSERT INTO `cliente` (`nombre` ,  `apellido` ,  `usuario` ,  `contrasenia` ,  `fecha_nac` ,  `correo` ,  `tel`  ) VALUES(  '{$_POST['nombre']}' ,  '{$_POST['apellido']}' ,  '{$_POST['usuario']}' ,  '$cyp_password' ,  '{$_POST['fecha_nac']}' ,  '{$_POST['correo']}' ,  '{$_POST['tel']}'  ) ";
-            mysql_query($sql) or die(mysql_error());
-        }
-        ?>
+<?php include_once 'Includes/header.php'; ?>
         <div  class="col-md-8 col-md-offset-2">
 
             <form action='' method='POST' class="form-horizontal" role="form"> 
