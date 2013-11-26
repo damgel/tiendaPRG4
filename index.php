@@ -121,7 +121,7 @@ $_SESSION['tamanio'];
                                 <!-- Desktop only -->
                                 <div class="action  hide-from-mobile">
                                     <p class="price"><?php echo "$" . $precio ?>
-                                    <form action="cesta.php" class="frmCarrito" method="post" name="compra">
+                                    <form action="addCarrito.php" class="frmCarrito" method="post" name="compra">
                                         <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
                                         <input name="precio" type="hidden" value="<?php echo $precio ?>" />
