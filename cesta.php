@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';   ?>
+<?php //include_once 'Includes/session.php';    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,9 +74,9 @@
             echo "</table>";
             ?>
             <div><?php
-                $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito limit 0,1";
-                $result = mysql_query($query) or die(mysql_error());
                 if (!empty($_SESSION['username'])) {
+                    $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito limit 0,1";
+                    $result = mysql_query($query) or die(mysql_error());
                     $nombre = $_SESSION['username'];
                     while ($row = mysql_fetch_array($result)) {
                         $_SESSION['cantidad_productos'] = $row['cantidad'];
