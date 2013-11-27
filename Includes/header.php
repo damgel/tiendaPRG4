@@ -83,10 +83,8 @@
                     echo "$nombre";
                     echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Cerra Sesion</a>';
                     //echo "<script>alert('$urlactual')</script>";
-                } elseif ($urlactual == "/index.php") {
-                    
-                } else {
-                    header("Location: index.php"); /* Redirect browser */
+                }  else {
+                    header("Location: logon.php"); /* Redirect browser */
                 }
                 ?>
             </div>
