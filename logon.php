@@ -3,9 +3,8 @@ include_once "clases/db_connect.php";
 if (isset($_POST['action'])) {
     $username = $_POST['username'];
     $password = sha1($_POST['password']);
-    $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE usuario = '$username' AND contrasenia = '$password' LIMIT 1");
-
-    if ($query >= 1) {
+    if (isset($username) && !empty($password)) {
+        $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE usuario = '$username' AND contrasenia = '$password' LIMIT 1");
         while ($row = mysql_fetch_array($query)) {
             session_start();
             $_SESSION['userid'] = $row{'idcliente'};
@@ -13,7 +12,7 @@ if (isset($_POST['action'])) {
             header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
         }
     } else {
-        echo "Usuario/Contrasenia incorrectos.";
+        echo "<p>Usuario/Contrasenia incorrectos.</p>";
     }
 }
 ?>
@@ -80,9 +79,9 @@ if (isset($_POST['action'])) {
 
     </head>
     <body>
-        <div id="header" class="navbar navbar-inverse navbar-static-top">
-            <?php include_once 'Includes/header.php'; ?>
-        </div>
+
+        <?php include_once 'Includes/header.php'; ?>
+
         <div class="container">
             <div class="panel panel-primary">
                 <div class="panel-heading"></div>
@@ -107,10 +106,9 @@ if (isset($_POST['action'])) {
                                     <label  class="col-lg-3 control-label" for="passwordm">Password</label>
                                     <div class="col-lg-8">
                                         <input type="password" name="password" class="form-control"  placeholder="Escriba una contrasenia" pattern=".{4,25}">
-
                                     </div>
                                 </div>
-                               <center>
+                                <center>
                                     <input type='submit' name='action' value="Entrar" class="btn btn-success">
                                 </center>
                                 <br>
@@ -136,8 +134,8 @@ if (isset($_POST['action'])) {
                         <br>
                     </div>
 
-</div>
-                   </div>
+                </div>
             </div>
-</div> <!-- End of outer-wrapper which opens in header.php -->
+        </div>
+    </div> <!-- End of outer-wrapper which opens in header.php -->
 

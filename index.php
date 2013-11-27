@@ -24,15 +24,37 @@ $_SESSION['tamanio'];
     </head>
     <body>
         <div class="contenedor-index">
+            <div id="carrito-info"> <p>Carrito</p>
+            </div>
+            
             <div class="header">
-                <a class="brand"></a>
+                <a class="brand">
+                    <img src="assets/store-logo.jpg">
+                </a>
+                  <div class="usuario-data">
+                    <p>Bienvenido <a id="usuario" href="<?php echo $_SESSION['url']; ?>">
+                            <?php
+                            session_start();
+                            if (!empty($_SESSION['username'])) {
+                                $nombre = $_SESSION['username'];
+                                $_SESSION['url'] = "profile.php";
+                                echo $nombre;
+                                echo "<a href='logoff.php'>Cerra Sesion</a>";
+                            } else {
+                                $_SESSION['url'] = "logon.php";
+                                echo "<a id='enlace' href='logon.php'>Entrar</a>";
+                            }
+                            ?></a></p>
+                </div>
+                
                 <form id="form1"  name="form1" method="POST" action="">
+                    
                     <div>
                         <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
                         <input type="text" name="buscar" id="buscar" /></td>
                         <input type="submit"  id="btn-buscar" name="Aceptar" id="Aceptar" value="Buscar" />
                     </div>
-                    <div id="carrito-info"> <p>Carrito</p></div>
+                    
                 </form>
                 <form id="form2" name="form2" method="POST" action="index.php">
                     <div>
@@ -53,16 +75,8 @@ $_SESSION['tamanio'];
                         </select>
                     </div>
                 </form>
-                <div class="usuario-data">
-                    <p>Bienvenido <a id="usuario" href="logon.php"><?php
-                            if (!empty($_SESSION['username'])) {
-                                $nombre = $_SESSION['username'];
-                                echo $nombre;
-                            } else {
-                                echo "Invitado";
-                            }
-                            ?></a></p>
-                </div>
+                
+              
             </div>
             <div class="categorias">
                 <?php include_once 'li-categoria.php'; ?>
@@ -101,7 +115,7 @@ $_SESSION['tamanio'];
 
             if ((mysql_num_rows($consulta)) === 0) {
                 echo "<h1>Producto no encontrado!:' ( </h1>";
-                echo "<h2><a href = 'Catalogo.php'>Regresar</a></h2>";
+                echo "<h2><a href = 'index.php'>Regresar</a></h2>";
             } else {
                 while ($filas = mysql_fetch_array($consulta)) {
                     $id = $filas['id_p'];
