@@ -28,7 +28,7 @@ $_SESSION['tamanio'];
             </div>
 
             <div class="header">
-                <a class="brand">
+                <a href="index.php" class="brand">
                     <img src="assets/store-logo.jpg">
                 </a>
                 <div class="usuario-data">
