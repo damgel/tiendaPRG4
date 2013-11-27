@@ -24,7 +24,7 @@ $_SESSION['tamanio'];
     </head>
     <body>
         <div class="contenedor-index">
-            <div id="carrito-info"> <p>Carrito</p>
+            <div id="carrito-info"> <p>Carrito<a href="cesta.php"><?php include_once 'info-carrito.php'; ?> </a></p>
             </div>
 
             <div class="header">
