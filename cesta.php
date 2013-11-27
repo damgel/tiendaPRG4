@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';    ?>
+<?php //include_once 'Includes/session.php';     ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -75,7 +75,8 @@
             ?>
             <div><?php
                 if (!empty($_SESSION['username'])) {
-                    $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito limit 0,1";
+                    $id_usuario = $_SESSION['userid'];
+                    $query = "SELECT round(sum(cantidad),0) as cantidad, round(sum(subtotal),2) FROM carrito where id_u=$id_usuario";
                     $result = mysql_query($query) or die(mysql_error());
                     $nombre = $_SESSION['username'];
                     while ($row = mysql_fetch_array($result)) {
@@ -96,13 +97,13 @@
                     <input name="cantidad" type="hidden" value="<?php echo $mi_carrito[$i]['cantidad'] ?>" />
                     <input name="total" type="hidden" value="<?php echo $subtotal ?>" />
                     <input type="<?php
-                if (!empty($_SESSION['username'])) {
-                    $nombre = $_SESSION['username'];
-                    echo "submit";
-                } else {
-                    echo 'hidden';
-                }
-                ?>" value="Procesar Compra"><input type='hidden' value='1' name='submitted' />
+                    if (!empty($_SESSION['username'])) {
+                        $nombre = $_SESSION['username'];
+                        echo "submit";
+                    } else {
+                        echo 'hidden';
+                    }
+                    ?>" value="Procesar Compra"><input type='hidden' value='1' name='submitted' />
                            <?php
                            //PROCESAR LOS PRODUCTOS AQUI
 

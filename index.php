@@ -85,7 +85,7 @@ $_SESSION['tamanio'];
             <?php
             /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
 
-            $consulta = mysql_query("select * from producto where activo_p='S'");
+            $consulta = mysql_query("select * from producto where activo_p='S' order by nombre_p ASC");
             if (isset($_POST['color'])) {
                 $consulta = mysql_query("select * from producto where activo_p = 'S' and color_p like '%" . $_POST['color'] . "%'");
             }

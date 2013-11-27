@@ -7,9 +7,19 @@ if (isset($_POST['Enviar'])) {
     $cyp_password = sha1($_POST['contrasenia']);
     $sql = "INSERT INTO `cliente` (`nombre` ,  `apellido` ,  `usuario` ,  `contrasenia` ,  `fecha_nac` ,  `correo` ,  `tel`  ) VALUES(  '{$_POST['nombre']}' ,  '{$_POST['apellido']}' ,  '{$_POST['usuario']}' ,  '$cyp_password' ,  '{$_POST['fecha_nac']}' ,  '{$_POST['correo']}' ,  '{$_POST['tel']}'  ) ";
     mysql_query($sql) or die(mysql_error());
-    header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
-} else {
-    //header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
+
+    $email = $_POST['correo'];
+    if (($email) != "") {
+        $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE correo = '$email' LIMIT 1");
+        while ($row = mysql_fetch_array($query)) {
+            session_start();
+            $_SESSION['userid'] = $row{'idcliente'};
+            $_SESSION['username'] = $row{'nombre'};
+            header("Location: index.php"); /* Si el usuario existe, direccionar a la pagina princial( catalogo) */
+        }
+    } else {
+        echo "<p>error al registrarse</p>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -29,7 +39,7 @@ if (isset($_POST['Enviar'])) {
 
     </style>
     <body>
-<?php include_once 'Includes/header.php'; ?>
+        <?php include_once 'Includes/header.php'; ?>
         <div  class="col-md-8 col-md-offset-2">
 
             <form action='' method='POST' class="form-horizontal" role="form"> 
