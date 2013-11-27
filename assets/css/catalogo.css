@@ -107,11 +107,13 @@ header {
     border-top-left-radius: 10px;
     display: block;
     background-color: #FDFEFF;
+    border:solid 1px #CCC;
     padding-top: 0px;
     width: 80%;
     height: auto;
     overflow:hidden;
     margin: auto;
+    margin-top: 5px;
     /* border: solid 1px #3399ff; */
 }
 
@@ -307,14 +309,16 @@ span
 .brand
 {
 
+    
     width: 250px;
-    background-color: #CCC;
+    
     overflow: hidden;
     margin: 10px;
     font-size: 18px;    
 }
 .brand img
 {
+    padding: 5px;
     height: 75px;
     width: 250px;
 }

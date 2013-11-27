@@ -37,7 +37,7 @@
     include_once 'clases/db_connect.php';
 // inicia la lista
     $s = '"S"';
-    $result = mysql_query("SELECT id_ct, nombre_ct FROM `categorias` where activo_ct=$s order by nombre_ct ASC") or trigger_error(mysql_error());
+    $result = mysql_query("SELECT id_ct, nombre_ct FROM `categorias` where activo_ct=$s order by nombre_ct ASC limit 0,10") or trigger_error(mysql_error());
     while ($row = mysql_fetch_array($result)) {
         foreach ($row AS $key => $value) {
             $row[$key] = stripslashes($value);
