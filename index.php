@@ -2,8 +2,7 @@
 
 <?php
 /* SESIONES Y  VARIABLES GLOBALES DE CONFIGURACION PARA ALMACENAR LOS CRITERIOS DE BUSQUEDA */
-$_SESSION['categoria'];
-$_SESSION['precio'];
+
 $_SESSION['color'];
 $_SESSION['tamanio'];
 //echo "LA CATEGORIA SELECCIONADA ES: ".$_SESSION['categoria'];
@@ -62,19 +61,16 @@ $_SESSION['tamanio'];
                         <form id="form1"  name="form1" method="POST" action="">
                             <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
                             <input type="text" name="buscar" id="buscar" /></td>
-                            <input type="submit"  id="btn-buscar" name="Aceptar" id="Aceptar" value="Buscar" />
-
-                        </form>
-                        <form id="form1" name="form2" method="POST" action="index.php">
+                            <input type="submit"  id="btn-buscar" name="Aceptar" id="Aceptar" value="Buscar" /><br>
                             <label for="">Precio:</label><a href="index.php?id=alto" class="glyphicon glyphicon-arrow-up">alto</a><a href="index.php?id=bajo" class="glyphicon glyphicon-arrow-down">bajo</a>
                             <label for="">Color</label>
-                            <select name="color" onchange="this.form.submit();">
+                            <select name="color">
+                                <option value="">Seleccione</option>
                                 <?php include_once 'clases/listas/colores.php'; ?>
                             </select>
                             <label for="">Tamanio</label>
-                            <select name="size" onchange="this.form.submit();">
-                                <option value=""><?php echo $_SESSION['filtro2'] ?></option>
-                                <option>Seleccione:</option>
+                            <select name="size">
+                                <option value="">Seleccione:</option>
                                 <?php include_once 'clases/listas/tallas.php'; ?>
                             </select>
                         </form>
@@ -95,10 +91,30 @@ $_SESSION['tamanio'];
             }
 
             if (isset($_POST['buscar'])) {
+                $size = $_POST['size'];
+                $color = $_POST['color'];
+                $sub_query;
+                $sub_query2;
+                if ($size != "") {
+                    
+                    $sub_query = 'and like %'. $size.'%';
+
+                } else {
+                    $sub_query = '';
+                }
+
+                if ($color != "") {
+                    
+                    $sub_query2 = 'and '. $color;
+                    
+                } else {
+                    $sub_query2 = '';
+                }
+
                 $rango_inicio = '0';
                 $rango_fin = $_POST['buscar'];
-                //$consulta = mysql_query("select * from producto where (activo_p = 'S' and nombre_p like '%" . $_POST['buscar'] . "%' ) or (activo_p = 'S' and precio_p like '%" . $_POST['buscar'] . "%' ) ");
-                $consulta = mysql_query("select * from producto where activo_p = 'S' and (nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '" . $_POST['buscar'] . "') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
+                //$consulta = mysql_query("select * from producto where activo_p = 'S' and (nombre_p like '%" . $_POST['buscar'] . "%' ) or (precio_p between '0' and '" . $_POST['buscar'] . "') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
+                $consulta = mysql_query("select * from producto where activo_p = 'S' and ((nombre_p like '%" . $_POST['buscar'] . "%' ) $sub_query) or (precio_p between '0' and '" . $_POST['buscar'] . "') or (categoria_p like '%" . $_POST['buscar'] . "%') or (marca_p like '%" . $_POST['buscar'] . "%')");
             }
             /* CONSULTA QUE FILTRA LAS BUSQUEDAS POR CATEGORIAS, RECIBE LOS PARAMETROS DEL  
              * MENU SUPERIOR CON LA LISTA DE CATEGORIAS */
