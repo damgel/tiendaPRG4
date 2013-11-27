@@ -103,8 +103,7 @@ header {
 /* CONTENEDOR PRINCIPAL, ESTE RIGE TODO EL CONTENIDO INTERNO */
 .contenedor-index
 {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
     display: block;
     background-color: #FDFEFF;
     border:solid 1px #CCC;
@@ -114,6 +113,7 @@ header {
     overflow:hidden;
     margin: auto;
     margin-top: 5px;
+    margin-bottom: 10px;
     /* border: solid 1px #3399ff; */
 }
 
