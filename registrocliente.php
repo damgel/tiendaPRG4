@@ -36,13 +36,20 @@ if (isset($_POST['Enviar'])) {
 
     </head>
     <style>
-
+     fieldset
+     {
+         background-color: white;
+           border:solid 1px #CCC;
+         margin: 25px;
+         padding: 25px;
+     }
     </style>
     <body>
         <?php include_once 'Includes/header.php'; ?>
         <div  class="col-md-8 col-md-offset-2">
 
             <form action='' method='POST' class="form-horizontal" role="form"> 
+                <fieldset>
                 <br>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Nombre</label>
@@ -95,8 +102,9 @@ if (isset($_POST['Enviar'])) {
                 </div>
 
 
-                <p align="center"><input type='submit' value='Enviar' class="btn btn-primary btn-lg" />
+                <p align="center"><input type='submit' value='Registrarse' class="btn btn-primary btn-lg" />
                     <input type='hidden' value='1' name='Enviar' /> </p>
+                </fieldset>
             </form> 
 
         </div>
