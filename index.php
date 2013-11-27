@@ -26,12 +26,12 @@ $_SESSION['tamanio'];
         <div class="contenedor-index">
             <div id="carrito-info"> <p>Carrito</p>
             </div>
-            
+
             <div class="header">
                 <a class="brand">
                     <img src="assets/store-logo.jpg">
                 </a>
-                  <div class="usuario-data">
+                <div class="usuario-data">
                     <p>Bienvenido <a id="usuario" href="<?php echo $_SESSION['url']; ?>">
                             <?php
                             session_start();
@@ -46,37 +46,30 @@ $_SESSION['tamanio'];
                             }
                             ?></a></p>
                 </div>
-                
-                <form id="form1"  name="form1" method="POST" action="">
-                    
-                    <div>
-                        <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
-                        <input type="text" name="buscar" id="buscar" /></td>
-                        <input type="submit"  id="btn-buscar" name="Aceptar" id="Aceptar" value="Buscar" />
+
+                <div class="buscador-options">
+                    <div class="frm1"> 
+                        <form id="form1"  name="form1" method="POST" action="">
+                            <label for="buscar" class="lbl-buscar"><a href="index.php">Buscar:</a></label>
+                            <input type="text" name="buscar" id="buscar" /></td>
+                            <input type="submit"  id="btn-buscar" name="Aceptar" id="Aceptar" value="Buscar" />
+
+                        </form>
+                        <form id="form1" name="form2" method="POST" action="index.php">
+                            <label for="">Precio:</label><a href="index.php?id=alto" class="glyphicon glyphicon-arrow-up">alto</a><a href="index.php?id=bajo" class="glyphicon glyphicon-arrow-down">bajo</a>
+                            <label for="">Color</label>
+                            <select name="color" onchange="this.form.submit();">
+                                <?php include_once 'clases/listas/colores.php'; ?>
+                            </select>
+                            <label for="">Tamanio</label>
+                            <select name="size" onchange="this.form.submit();">
+                                <option value=""><?php echo $_SESSION['filtro2'] ?></option>
+                                <option>Seleccione:</option>
+                                <?php include_once 'clases/listas/tallas.php'; ?>
+                            </select>
+                        </form>
                     </div>
-                    
-                </form>
-                <form id="form2" name="form2" method="POST" action="index.php">
-                    <div>
-                        <label for="">Precio:</label><a href="index.php?id=alto" class="glyphicon glyphicon-arrow-up">alto</a><a href="index.php?id=bajo" class="glyphicon glyphicon-arrow-down">bajo</a>
-                        <label for="">Color</label>
-                        <select name="color" onchange="this.form.submit();">
-                            <option>Seleccione:</option>
-                            <?php include_once 'clases/listas/colores.php'; ?>
-                        </select>
-                    </div>
-                </form>
-                <form id="form3" name="form2" method="GET" action="">
-                    <div>
-                        <label for="">Tamanio</label>
-                        <select name="size" onchange="this.form.submit();">
-                            <option value=""><?php echo $_SESSION['filtro2'] ?></option>
-                            <?php include_once 'clases/listas/tallas.php'; ?>
-                        </select>
-                    </div>
-                </form>
-                
-              
+                </div>
             </div>
             <div class="categorias">
                 <?php include_once 'li-categoria.php'; ?>

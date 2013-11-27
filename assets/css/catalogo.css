@@ -91,7 +91,7 @@ input[type=text]
     box-shadow: inset 0 -2px #2475ab;    
 }#btn-buscar:hover
 {
-   background: #3399ff;
+    background: #3399ff;
 }
 
 /* Basic Layout
@@ -100,9 +100,11 @@ input[type=text]
 header {
     height: 60px;
 }
-
+/* CONTENEDOR PRINCIPAL, ESTE RIGE TODO EL CONTENIDO INTERNO */
 .contenedor-index
 {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     display: block;
     background-color: #FDFEFF;
     padding-top: 0px;
@@ -243,7 +245,9 @@ span
 
 .header
 {
-    border:solid 1px #4FA5C0;
+    /* border:solid 1px #4FA5C0; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 .usuario-data
 {
@@ -270,12 +274,12 @@ span
     height: 20px;
     border-left: 1px solid #000;
     padding-left: 10px;
-        
+
 }
 /*    INFO DEL CARRITO DE COMPRAS*/ 
 #carrito-info
 {
-    
+
     margin-right: 25px;
     margin-top: 10px;
     margin-bottom: 0px;
@@ -289,12 +293,12 @@ span
 #carrito-info p
 {
     padding-top: 12px;
-   padding-left: 40px;
+    padding-left: 40px;
 }
 
 #enlace
 {
-    
+
     color: #3399ff;
     font-weight: bold;
     border-left: 1px solid #000;
@@ -302,7 +306,7 @@ span
 }
 .brand
 {
-   
+
     width: 250px;
     background-color: #CCC;
     overflow: hidden;
@@ -311,7 +315,29 @@ span
 }
 .brand img
 {
- height: 75px;
- width: 250px;
+    height: 75px;
+    width: 250px;
+}
+.buscador-options
+{
+
+    margin: 0px;
+    padding: 3px;
+}
+
+.buscador-options .frm1
+{
+
+    padding: 0px;
+    border: 0px;
+    width: 80%;
+    margin-right: auto;
+    margin-left: 250px; /*MARGEN QUE MANTIENE ALINEADO EL CAMPO DEL BUSCADOR */
+}
+#form1
+{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
 
