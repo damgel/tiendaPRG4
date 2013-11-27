@@ -1,6 +1,6 @@
 <?php
 include_once "clases/db_connect.php";
-if (isset($_POST['submit'])) {
+if (isset($_POST['action'])) {
     $username = $_POST['username'];
     $password = sha1($_POST['password']);
     $query = mysql_query("SELECT idcliente, nombre FROM cliente WHERE usuario = '$username' AND contrasenia = '$password' LIMIT 1");
@@ -106,7 +106,7 @@ if (isset($_POST['submit'])) {
                                 <div class="form-group">
                                     <label  class="col-lg-3 control-label" for="passwordm">Password</label>
                                     <div class="col-lg-8">
-                                        <input type="password" name="password" class="form-control"  placeholder="Escriba una contrasenia" pattern=".{8,25}">
+                                        <input type="password" name="password" class="form-control"  placeholder="Escriba una contrasenia" pattern=".{4,25}">
 
                                     </div>
                                 </div>
