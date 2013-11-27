@@ -178,6 +178,7 @@ header {
 .product input[type=submit] {
     float: right;
     padding: 2px 7px;
+    margin-left: 0px;
 }
 
 .frmCarrito input[type=text]
@@ -208,8 +209,8 @@ form .order-button {
 }
 
 form .order-button:hover {
-    background: #2CE67A;
-
+    background: #4FA5C0;
+    color: #FDFEFF;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;

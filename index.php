@@ -20,6 +20,16 @@ $_SESSION['tamanio'];
         <script src="assets/js/jquery-v1.10.2.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/holder.js"></script>
+        <script type="text/javascript">
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+        </script>
+
 
     </head>
     <body>
@@ -139,13 +149,9 @@ $_SESSION['tamanio'];
                                     <form action="addCarrito.php" class="frmCarrito" method="post" name="compra">
                                         <input name="id_txt" type="hidden" value="<?php echo $id ?>" />
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
-                                        <input name="precio" type="hidden" value="<?php echo $precio ?>" />
-                                        <style>
-
-                                        </style>
-                                        <label for="cantidad" class="col-lg-3 control-label">Cantidad</label>
-
-                                        <input name="cantidad" type="text" value="1"  required/>
+                                        <input name="precio" type="hidden" value="<?php echo $precio ?>" /><br><br>
+                                        <label for="cantidad" class="control-label">Cantidad</label>
+                                        <input name="cantidad" type="text" value="1"  required onkeypress="return isNumberKey(this)"/>
                                         <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
                                     </form>
                                     </p>
