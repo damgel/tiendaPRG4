@@ -139,7 +139,12 @@ if (isset($_GET['eliminar'])) {
                         echo "<td valign='top'>" . nl2br($row['id_ct']) . "</td>";
                         echo "<td valign='top'>" . nl2br($row['nombre_ct']) . "</td>";
                         echo "<td valign='top'>" . nl2br($row['fecha_ct']) . "</td>";
-                        echo "<td valign='top'>" . nl2br($row['activo_ct']) . "</td>";
+                        if ($row['activo_ct'] == "S") {
+                            $var_activo = "<img src='img/success.png'></img>";
+                        } else {
+                            $var_activo = "<img src='img/error.png'></img>";
+                        }
+                        echo "<td valign='top'>" . $var_activo . "</td>";
                         echo "<td valign='top'><a href=administrarCategorias.php?editar={$row['id_ct']}>Editar</a><br><a href=administrarCategorias.php?eliminar={$row['id_ct']}>Eliminar</a></td> ";
                         echo "</tr>";
                     }
