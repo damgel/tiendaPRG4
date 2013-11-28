@@ -82,7 +82,7 @@
                     while ($row = mysql_fetch_array($result)) {
                         $_SESSION['cantidad_productos'] = $row['cantidad'];
                         $cantidad_p = $_SESSION['cantidad_productos'];
-                        echo "<p class='total'>Total a pagar " . " = <b>$ " . $row['round(sum(subtotal),2)'] . "</b></p>";
+                        echo "<p class='total'>Total a pagar " . " : <b>$ " . $row['round(sum(subtotal),2)'] . "</b></p>";
                         echo "<p class='total'>Productos " . " : <b> " . $row['cantidad'] . "</b></p>";
                         //echo "<script>alert($cantidad_productos)</script>";
                         echo "<br />";
