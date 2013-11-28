@@ -10,6 +10,7 @@ if (!empty($_SESSION['username'])) {
         $_SESSION['cantidad_productos'] = $row['cantidad'];
         $cantidad_p = $_SESSION['cantidad_productos'];
         $cantidad_unitatia = $row['cantidad_unitaria'];
+        $totalapagar=$row['round(sum(subtotal),2)'];
         echo "<p class='total'>Total a pagar " . " : <b>$ " . $row['round(sum(subtotal),2)'] . "</b></p>";
         echo "<p class='total'>Productos " . " : <b> " . $row['cantidad'] . "</b></p>";
         echo "<br />";

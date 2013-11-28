@@ -91,7 +91,7 @@
                                 $nombre_p = $row['nombre'];
 
                                 //GUARDANDO EL COD_COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
-                                $setCompra = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
+                                $setCompra = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,   $totalapagar  ) ";
                                 mysql_query($setCompra) or die(mysql_error());
                                 $pivotCompra = 1;
                             }
