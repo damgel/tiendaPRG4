@@ -34,20 +34,7 @@ $(document).ready(function() {
                     {
                         required: true,
                         email: true
-                    },
-            contrasenia:
-                    {
-                        minlength: 8,
-                        required: true
-                        patterner: [0, 8]
-                    },
-            confirmar_contrasenia:
-                    {
-                        minlength: 8,
-                        required: true,
-                        equalTo: '#contrasenia',
-                        patterner: [0, 8]
-                    },
+                    }
         }
     });
     // fallback que detecta el uso del tag DATE en html5 y si no 

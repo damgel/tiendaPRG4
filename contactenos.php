@@ -21,44 +21,42 @@
 
     </head>
     <body>
-    
 
-    <?php
-if(isset($_POST['email'])) {
 
+        <?php
+        if (isset($_POST['email'])) {
 // Debes editar las próximas dos líneas de código de acuerdo con tus preferencias
-$email_to = "monteshernandez6@hotmail.com";
-$email_subject = "Contacto desde el sitio web";
+            $email_to = "deakill@hotmail.com";
+            $email_subject = "Contacto desde el sitio web";
 
 // Aquí se deberían validar los datos ingresados por el usuario
-if(!isset($_POST['nombre']) ||
-!isset($_POST['telefono']) ||
-!isset($_POST['email']) ||
-!isset($_POST['motivo']) ||
-!isset($_POST['mensaje'])) {
+            if (!isset($_POST['nombre']) ||
+                    !isset($_POST['telefono']) ||
+                    !isset($_POST['email']) ||
+                    !isset($_POST['motivo']) ||
+                    !isset($_POST['mensaje'])) {
 
-echo "<b>Ocurrió un error y el formulario no ha sido enviado. </b><br />";
-echo "Por favor, vuelva atrás y verifique la información ingresada<br />";
-die();
-}
-
-$email_message = "Detalles del formulario de contacto:\n\n";
-$email_message .= "Nombre: " . $_POST['nombre'] . "\n";
-$email_message .= "Telefono: " . $_POST['telefono'] . "\n";
-$email_message .= "E-mail: " . $_POST['email'] . "\n";
-$email_message .= "Motivo: " . $_POST['motivo'] . "\n";
-$email_message .= "Mensaje: " . $_POST['mensaje'] . "\n\n";
+                echo "<b>Ocurrió un error y el formulario no ha sido enviado. </b><br />";
+                echo "Por favor, vuelva atrás y verifique la información ingresada<br />";
+                die();
+            }
+            $email_message = "Detalles del formulario de contacto:\n\n";
+            $email_message .= "Nombre: " . $_POST['nombre'] . "\n";
+            $email_message .= "Telefono: " . $_POST['telefono'] . "\n";
+            $email_message .= "E-mail: " . $_POST['email'] . "\n";
+            $email_message .= "Motivo: " . $_POST['motivo'] . "\n";
+            $email_message .= "Mensaje: " . $_POST['mensaje'] . "\n\n";
 
 
 // Ahora se envía el e-mail usando la función mail() de PHP
-$headers = 'From: '.$email_from."\r\n".
-'Reply-To: '.$email_from."\r\n" .
-'X-Mailer: PHP/' . phpversion();
-@mail($email_to, $email_subject, $email_message, $headers);
+            $headers = 'From: ' . $email_from . "\r\n" .
+                    'Reply-To: ' . $email_from . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+            @mail($email_to, $email_subject, $email_message, $headers);
 
-echo "¡El formulario se ha enviado con éxito!";
-}
-?>
+            echo "¡El formulario se ha enviado con éxito!";
+        }
+        ?>
 
 
         <div id="header1" class="navbar navbar-default navbar-static-top"></div>
@@ -104,37 +102,38 @@ echo "¡El formulario se ha enviado con éxito!";
                                 </div>
                             </div>
 
-                                <div class="form-group">
-                                    <label for="motivo" class="col-lg-3 control-label" >Motivo</label>
-                                    <div class="col-lg-4">
-                                        <select name="motivo" class="form-control" required="">
-                                            <option value="NONE">- Seleccione -</option>
-                                            <option value="Dudas en general">Dudas en general</option>
-                                            <option value="Problemas con el sistema">Problemas con el sistema</option>
-                                            <option value="Recomendaciones">Recomendaciones</option>
-                                            <option value="Informacion de registro">Informacion de registro</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group">
+                                <label for="motivo" class="col-lg-3 control-label" >Motivo</label>
+                                <div class="col-lg-4">
+                                    <select name="motivo" class="form-control" required="">
+                                        <option value="NONE">- Seleccione -</option>
+                                        <option value="Dudas en general">Dudas en general</option>
+                                        <option value="Problemas con el sistema">Problemas con el sistema</option>
+                                        <option value="Recomendaciones">Recomendaciones</option>
+                                        <option value="Informacion de registro">Informacion de registro</option>
+                                    </select>
                                 </div>
                             </div>
-
-
-                            <div class="form-group">    
-                                <label for="Mensaje" class="col-lg-3 control-label" >Mensaje</label>
-                                <div class="col-lg-6">
-                                    <textarea name="mensaje" class="form-control col-lg-6" rows="10" > </textarea>
-
-                                </div>
-                            </div>
-                            <center><button type="submit" name="enviar" value="enviar" class="btn btn-primary btn-lg" >Enviar</button></center>
-                            
                         </div>
-                    </form>
-                </div>       
-            </div>
+
+
+                        <div class="form-group">    
+                            <label for="Mensaje" class="col-lg-3 control-label" >Mensaje</label>
+                            <div class="col-lg-6">
+                                <textarea name="mensaje" class="form-control col-lg-6" rows="10" > </textarea>
+
+                            </div>
+                        </div>
+
+                        <center> <input  type="submit" name="enviar" value="enviar" class="btn btn-primary btn-lg" ></center></form>
+
+                </div>
+
+            </div>       
         </div>
+    </div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
-    </body>
+</body>
 </html>

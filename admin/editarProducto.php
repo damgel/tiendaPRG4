@@ -66,17 +66,17 @@
                 ?>
 
                 <form action='' method='POST'> 
-                    <div><b>Imagen:</b><br /><input type='text' name='imagen_p' value='<?= stripslashes($row['imagen_p']) ?>' /></div> 
-                    <div><b>Nombre:</b><br /><input type='text' name='nombre_p' value='<?= stripslashes($row['nombre_p']) ?>' /></div> 
-                    <div><b>Descripcion:</b><br /><input type='text' name='descripcion_p' value='<?= stripslashes($row['descripcion_p']) ?>' /></div> 
-                    <div><b>Costo:</b><br /><input type='text' name='costo_p' value='<?= stripslashes($row['costo_p']) ?>' /></div> 
-                    <div><b>Precio de Venta:</b><br /><input type='text' name='precio_p' value='<?= stripslashes($row['precio_p']) ?>' /></div> 
+                    <div><b>Imagen:</b><br /><input type='text' name='imagen_p' value='<?= stripslashes($row['imagen_p']) ?>' required/></div> 
+                    <div><b>Nombre:</b><br /><input type='text' name='nombre_p' value='<?= stripslashes($row['nombre_p']) ?>' required/></div> 
+                    <div><b>Descripcion:</b><br /><input type='text' name='descripcion_p' value='<?= stripslashes($row['descripcion_p']) ?>' required/></div> 
+                    <div><b>Costo:</b><br /><input type='text' name='costo_p' value='<?= stripslashes($row['costo_p']) ?>' required/></div> 
+                    <div><b>Precio de Venta:</b><br /><input type='text' name='precio_p' value='<?= stripslashes($row['precio_p']) ?>' required/></div> 
                     <div><select name="activo_p">
                             <option value="S">Activo</option>
                             <option value="N">No activo</option>
                         </select></div>
-                    <div><b>Marca:</b><br /><input type='text' name='marca_p' value='<?= stripslashes($row['marca_p']) ?>' /></div>
-                    <div><b>Existencia:</b><br /><input type='text' name='existencia_p' value='<?= stripslashes($row['existencia_p']) ?>' /></div>
+                    <div><b>Marca:</b><br /><input type='text' name='marca_p' value='<?= stripslashes($row['marca_p']) ?>' required/></div>
+                    <div><b>Existencia:</b><br /><input type='text' name='existencia_p' value='<?= stripslashes($row['existencia_p']) ?>' required/></div>
                     <div><b>Categoria:</b><br><select name="categoria_p" required><option>-seleccione-</option><?php include_once '../clases/listas/categorias.php'; ?></select></div>
                     <div><input type='submit' value='Editar Producto' /><input type='hidden' value='1' name='submitted' /></div> 
                 </form> 
