@@ -8,7 +8,7 @@
         <link href="../assets/css/main.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <?php include_once '../Includes/header.php'; ?>
+        <?php include_once '../Includes/header_admin.php'; ?>
         <div class="contenedor">
             <?php
             /*  CODIGO PARA ACTIVAR AL PASAR PARAMETROS DESDE EL PANEL DE PRODUCTOS */

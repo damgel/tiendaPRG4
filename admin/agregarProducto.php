@@ -24,7 +24,7 @@
         </style>
     </head>
     <body>
-        <?php include_once '../Includes/header.php'; ?>
+        <?php include_once '../Includes/header_admin.php'; ?>
         <div class="contenedor">
             <?php
             include_once '../clases/db_connect.php';
