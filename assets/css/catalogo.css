@@ -190,6 +190,16 @@ header {
     height: 30px;
     width: 100px;
 }
+
+.frmCarrito input[type=number]
+{
+    margin: 5px;
+    padding-left:10px;
+    font-size: 14px;
+    font-weight: bolder;
+    height: 30px;
+    width: 100px;
+}
 form .order-button {
 
     /* background: #27ae60; */
@@ -310,9 +320,9 @@ span
 .brand
 {
 
-    
+
     width: 250px;
-    
+
     overflow: hidden;
     margin: 10px;
     font-size: 18px;    
@@ -346,7 +356,7 @@ span
     margin: 0px;
     padding: 0px;
     width: 90%;
-    
+
 }
 
 

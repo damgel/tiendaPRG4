@@ -167,7 +167,7 @@ $_SESSION['tamanio'];
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
                                         <input name="precio" type="hidden" value="<?php echo $precio ?>" /><br><br>
                                         <label for="cantidad" class="control-label">Cantidad</label>
-                                        <input name="cantidad" type="text" value="1"  required onkeypress="return isNumberKey(this)"/>
+                                        <input name="cantidad" type="number" value="1" min="1" max="100"  required onkeypress="return isNumberKey(this)"/>
                                         <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
                                     </form>
                                     </p>
