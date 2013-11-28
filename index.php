@@ -144,7 +144,7 @@ $_SESSION['tamanio'];
                     $marca = $filas['marca_p'];
                     $talla = $filas['tamanio_p'];
                     $precio = $filas['precio_p'];
-                    $enStock = $filas['existencia_p'];
+                    $existencia = $filas['existencia_p'];
                     $fecha = $filas['fecha_p'];
                     ?>
                     <div id="productsWrapper">
@@ -157,6 +157,7 @@ $_SESSION['tamanio'];
                                     <p class="description"><span class="bolder-title"></span><?php echo $desc ?></p>
                                     <p class="description"><span class="bolder-title">Marca:</span><?php echo $marca ?></p>
                                     <p class="description"><span class="bolder-title">Tamanio:</span><?php echo $talla ?></p>
+                                    <p class="description"><span class="bolder-title">Disponibles:</span><?php echo $existencia ?></p>
                                     <p class="price hide-from-desktop"><?php echo $precio ?></p>                    
                                 </div>
                                 <!-- Desktop only -->
@@ -167,7 +168,7 @@ $_SESSION['tamanio'];
                                         <input name="nombre" type="hidden" value="<?php echo $nombre ?>" />
                                         <input name="precio" type="hidden" value="<?php echo $precio ?>" /><br><br>
                                         <label for="cantidad" class="control-label">Cantidad</label>
-                                        <input name="cantidad" type="number" value="1" min="1" max="100"  required onkeypress="return isNumberKey(this)"/>
+                                        <input name="cantidad" type="number" value="1" min="1" max="<?php echo $existencia ?>"  required onkeypress="return isNumberKey(this)"/>
                                         <input class="order-button" name="Comprar" type="submit" value="Agregar al carrito" />
                                     </form>
                                     </p>

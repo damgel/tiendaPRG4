@@ -11,7 +11,7 @@ $password = "";
 $databaseName = "tienda";
 
 //echo "<p>hola mundo desde la clase de conexion..</p>";
-if (!($conexion = mysql_connect($servidor, $usuario, $password) or die('Error al conectar con mysql'))) {
+if (!($conexion = mysql_connect($servidor, $usuario, $password) or die('Oh!, parece que el servidor de la db esta apagado ^_^'))) {
     echo "algo fallo en la conexion";
     //exit();
 }

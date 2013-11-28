@@ -133,7 +133,7 @@ header {
 
 .product .productInfo {
     border: 1px solid #eee;
-    height: 300px;
+    
     overflow: hidden;
     background-image: linear-gradient( #ffffff , #e5eecc 100px);
 }
