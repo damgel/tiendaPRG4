@@ -86,13 +86,70 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <h1>Historial de compras</h1>
+                                <style>
+                                    table
+                                    {
+                                        background: white;
+                                    }
+                                    .sub-tabla
+                                    {
+                                        border-radius: 10px;
+                                        display: block;
+                                        margin-left: 125px;
+                                        padding-left: 50px;
+                                    }
+                                </style>
+                                <h3>Historial de compras</h3>
+                                <?
+                                include_once '../clases/db_connect.php';
 
+                                echo "<table class='bordered table-bordered table-condensed' >";
+                                echo "<tr>";
+                                
+                                echo "<td><b>Codigo Compra</b></td>";
+                                echo "<td><b>Fecha de Compra</b></td>";
+                                echo "<td><b>Cantidad Comprada</b></td>";
+                                echo "<td><b>Total</b></td>";
+                                echo "</tr>";
+                                $result = mysql_query("SELECT * FROM `compra` where id_u=$idcliente") or trigger_error(mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    foreach ($row AS $key => $value) {
+                                        $row[$key] = stripslashes($value);
+                                    }
+                                    echo "<tr>";
+                                    
+                                    echo "<td valign='top'>" . nl2br($row['cod_compra']) . "</td>";
+                                    echo "<td valign='top'>" . nl2br($row['fecha']) . "</td>";
+                                    echo "<td valign='top'>" . nl2br($row['cantidad_p']) . "</td>";
+                                    echo "<td valign='top'>" . nl2br($row['total']) . "</td>";
 
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                echo "<div class='sub-tabla'>";
+                                echo "<table class='bordered table-bordered table-condensed' >";
+                                echo "<tr>";
+                                
+                                echo "<td><b>Nombre del Producto</b></td>";
+                                
+                                echo "<td><b>Fecha</b></td>";
+                                echo "</tr>";
+                                $result = mysql_query("SELECT * FROM `detalles_compra` where id_u=$idcliente") or trigger_error(mysql_error());
+                                while ($row = mysql_fetch_array($result)) {
+                                    foreach ($row AS $key => $value) {
+                                        $row[$key] = stripslashes($value);
+                                    }
+                                    echo "<tr>";
+                                    
+                                    echo "<td valign='top'>" . nl2br($row['nombre_p']) . "</td>";
+                                    
+                                    echo "<td valign='top'>" . nl2br($row['fecha']) . "</td>";
 
-
-
-                                ............................
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                                echo "</div>";
+                                ?>
                             </div>
                         </div> 
                     </div>
