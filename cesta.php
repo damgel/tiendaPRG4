@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';                    ?>
+<?php //include_once 'Includes/session.php';                                                            ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,38 +59,51 @@
                     <input name="total" type="hidden" value="<?php echo $subtotal ?>" />
                     <input type="<?php include_once 'cesta_desactivar.php'; ?>" value="Procesar Compra"><input type='hidden' value='1' name='submitted' />
                     <?php
-                    //PROCESAR LOS PRODUCTOS AQUI
-
                     if (isset($_POST['submitted'])) {
+                        ///AQUI VERIFICAR SI EL CLIENTE YA TIENE UNA COMPRA PENDIENTE
                         $id_usuario = $_SESSION['userid'];
+                        $cod_compra;
+                        $hash_compra;
+                        $getCodCompra = mysql_query("SELECT compra_pendiente FROM `cliente` where idcliente=$id_usuario") or trigger_error(mysql_error());
+                        while ($rowcp = mysql_fetch_array($getCodCompra)) {
+                            $cod_compra = $rowcp['compra_pendiente'];
+                        }
+                        if ($cod_compra == "") {
+                            $hash_compra = uniqid();
+                        } else {
+                            $hash_compra = $cod_compra;
+                        }
+                        //$hash_compra = uniqid();
+                        //END VERIFICACION DE COMPRA EXISTENTE
+                        //ACTUALIZAR CODIGO DE COMPRA PARA MANTENER INTEGRIDAD
+                        $setCodCompra = "UPDATE`cliente` SET `compra_pendiente`='$hash_compra' where idcliente='$id_usuario'";
+                        mysql_query($setCodCompra) or die(mysql_error());
+
+                        // OBTENER LOS PRODUCTOS QUE ESTAN EN CARRITO DEL USUARIO ACTUAL
                         $query = "SELECT id_p, nombre, cantidad, subtotal FROM carrito where id_u=$id_usuario";
                         $result = mysql_query($query) or die(mysql_error());
                         $pivotCompra = 0;
-
-
-                        $hash_compra = uniqid();
-                        $sqlu = "UPDATE`cliente` SET `compra_pendiente`='$hash_compra' where idcliente='$id_usuario'";
-                        mysql_query($sqlu) or die(mysql_error());
-
-
                         while ($row = mysql_fetch_array($result)) {
                             $id_p = $row['id_p'];
                             $nombre_p = $row['nombre'];
+                            echo $nombre_p;
                             if ($pivotCompra == 0) {
                                 $nombre_p = $row['nombre'];
 
-                                //GUARDANDO LA COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
-                                $sql = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
-                                mysql_query($sql) or die(mysql_error());
+                                //GUARDANDO EL COD_COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
+                                $setCompra = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
+                                mysql_query($setCompra) or die(mysql_error());
                                 $pivotCompra = 1;
                             }
-                            $sqldp = "INSERT INTO `detalles_compra` ( `cod_compra` ,  `id_u` ,  `nombre_p`,`fecha` ) VALUES(  '$hash_compra' ,  $id_usuario ,  '$nombre_p' ,  now()  ) ";
-                            mysql_query($sqldp) or die(mysql_error());
+                            $setDetalleCompra = "INSERT INTO `detalles_compra` ( `cod_compra` ,  `id_u` ,  `nombre_p`,`fecha` ) VALUES(  '$hash_compra' ,  $id_usuario ,  '$nombre_p' ,  now()  ) ";
+                            mysql_query($setDetalleCompra) or die(mysql_error());
 
-                            $update_existencia = "UPDATE producto set existencia_p=((select existencia_p)-$cantidad_unitatia) where id_p=$id_p";
-                            mysql_query($update_existencia) or die(mysql_error());
-                            //echo "PRUEBA DE CONCEPTO".$test."<br>";
+                            //QUERY QUE HACE EL DESCUENTA EL PRODUCTO VENDIDO
+                            $updateExistencia = "UPDATE producto set existencia_p=((select existencia_p)-$cantidad_unitatia) where id_p=$id_p";
+                            mysql_query($updateExistencia) or die(mysql_error());
                         }
+
+                        //QUERY QUE ELIMINA TODOS LOS PRODUCTOS DESPUES DE PROCESAR UNA COMPRA
                         mysql_query("DELETE FROM `carrito` WHERE id_u = $id_usuario ");
                         echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
                     }

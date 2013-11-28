@@ -85,7 +85,7 @@ $_SESSION['tamanio'];
             <?php
             /* CONSULTA QUE BUSCA POR LOS CRITERIOS ESPECIFICADOS POR EL USUARIO */
 
-            $consulta = mysql_query("select * from producto where activo_p='S' order by nombre_p ASC");
+            $consulta = mysql_query("select * from producto where activo_p='S' and existencia_p>0 order by nombre_p ASC");
             if (isset($_POST['color'])) {
                 $consulta = mysql_query("select * from producto where activo_p = 'S' and color_p like '%" . $_POST['color'] . "%'");
             }
@@ -96,17 +96,15 @@ $_SESSION['tamanio'];
                 $sub_query;
                 $sub_query2;
                 if ($size != "") {
-                    
-                    $sub_query = 'and like %'. $size.'%';
 
+                    $sub_query = 'and like %' . $size . '%';
                 } else {
                     $sub_query = '';
                 }
 
                 if ($color != "") {
-                    
-                    $sub_query2 = 'and '. $color;
-                    
+
+                    $sub_query2 = 'and ' . $color;
                 } else {
                     $sub_query2 = '';
                 }
@@ -176,10 +174,10 @@ $_SESSION['tamanio'];
                             </li>
                         </ul>
                     </div>
-                    <?php
-                }
-            }
-            ?>
+        <?php
+    }
+}
+?>
         </div>
 
 

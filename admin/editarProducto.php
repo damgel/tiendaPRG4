@@ -72,7 +72,8 @@
                     <div><b>Costo:</b><br /><input type='text' name='costo_p' value='<?= stripslashes($row['costo_p']) ?>' /></div> 
                     <div><b>Precio de Venta:</b><br /><input type='text' name='precio_p' value='<?= stripslashes($row['precio_p']) ?>' /></div> 
                     <div><b>Activo:</b><br /><input type='text' name='activo_p' value='<?= stripslashes($row['activo_p']) ?>' /></div> 
-                    <div><b>Marca:</b><br /><input type='text' name='marca_p' value='<?= stripslashes($row['marca_p']) ?>' /></div> 
+                    <div><b>Marca:</b><br /><input type='text' name='marca_p' value='<?= stripslashes($row['marca_p']) ?>' /></div>
+                    <div><b>Existencia:</b><br /><input type='text' name='existencia_p' value='<?= stripslashes($row['existencia_p']) ?>' /></div>
 
                     <div><input type='submit' value='Editar Producto' /><input type='hidden' value='1' name='submitted' /></div> 
                 </form> 

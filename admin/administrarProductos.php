@@ -117,7 +117,7 @@
                 echo "<td><b>Precio Venta</b></td>";
                 echo "<td><b>Precio Costo</b></td>";
                 echo "<td><b>Color</b></td>";
-                echo "<td><b>Tamanio</b></td>";
+                echo "<td><b>Existencia</b></td>";
                 echo "<td><b>Activo</b></td>";
                 echo "<td><b>Mantenimiento</b></td>";
                 echo "</tr>";
@@ -138,8 +138,13 @@
                     echo "<td valign='top'>" . nl2br($row['precio_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['costo_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['color_p']) . "</td>";
-                    echo "<td valign='top'>" . nl2br($row['tamanio_p']) . "</td>";
-                    echo "<td valign='top'>" . nl2br($row['activo_p']) . "</td>";
+                    echo "<td valign='top'>" . nl2br($row['existencia_p']) . "</td>";
+                    if ($row['activo_p'] == "S") {
+                        $var_activo = "SI";
+                    } else {
+                        $var_activo = "NO";
+                    }
+                    echo "<td valign='top'>" . $var_activo . "</td>";
                     echo "<td valign='top'><a href=editarProducto.php?activar={$row['id_p']}>Activar</a><br><a href=editarProducto.php?desactivar={$row['id_p']}>Desactivar</a><br><hr class='divhr'><a href=editarProducto.php?id={$row['id_p']}>Editar</a><br> <a href=editarProducto.php?eliminar={$row['id_p']}>Eliminar</a></td> ";
                     echo "</tr>";
                 }
