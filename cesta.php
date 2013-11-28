@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';                   ?>
+<?php //include_once 'Includes/session.php';                    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,18 +66,19 @@
                         $query = "SELECT id_p, nombre, cantidad, subtotal FROM carrito where id_u=$id_usuario";
                         $result = mysql_query($query) or die(mysql_error());
                         $pivotCompra = 0;
-                        
-                        
+
+
                         $hash_compra = uniqid();
                         $sqlu = "UPDATE`cliente` SET `compra_pendiente`='$hash_compra' where idcliente='$id_usuario'";
                         mysql_query($sqlu) or die(mysql_error());
-                        
-                        
+
+
                         while ($row = mysql_fetch_array($result)) {
+                            $id_p = $row['id_p'];
                             $nombre_p = $row['nombre'];
                             if ($pivotCompra == 0) {
                                 $nombre_p = $row['nombre'];
-                                
+
                                 //GUARDANDO LA COMPRA Y PREPARANDO PARA PROCESAR LOS DETALLES
                                 $sql = "INSERT INTO `compra` ( `cod_compra` ,  `id_u` ,  `fecha` ,  `cantidad_p` ,  `total`  ) VALUES(  '$hash_compra' ,  $id_usuario ,  now() , $cantidad_p ,  '{$_POST['total']}'  ) ";
                                 mysql_query($sql) or die(mysql_error());
@@ -85,6 +86,10 @@
                             }
                             $sqldp = "INSERT INTO `detalles_compra` ( `cod_compra` ,  `id_u` ,  `nombre_p`,`fecha` ) VALUES(  '$hash_compra' ,  $id_usuario ,  '$nombre_p' ,  now()  ) ";
                             mysql_query($sqldp) or die(mysql_error());
+
+                            $update_existencia = "UPDATE producto set existencia_p=((select existencia_p)-$cantidad_unitatia) where id_p=$id_p";
+                            mysql_query($update_existencia) or die(mysql_error());
+                            //echo "PRUEBA DE CONCEPTO".$test."<br>";
                         }
                         mysql_query("DELETE FROM `carrito` WHERE id_u = $id_usuario ");
                         echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
