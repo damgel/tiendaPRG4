@@ -33,7 +33,7 @@ CREATE TABLE `carrito` (
   `cantidad` float DEFAULT '0',
   `subtotal` double DEFAULT '0',
   PRIMARY KEY (`idcarrito`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
-INSERT INTO `carrito` VALUES (91,21,1,'sombrero playa',28,1,28);
+INSERT INTO `carrito` VALUES (100,3,1,'zapatos',36.17,1,36.17),(101,20,1,'BLACKBERRY',150,1,150),(102,22,1,'android daBeast',250,1,250),(103,22,1,'android daBeast',250,1,250),(105,19,3,'0000 TELEFONO',125,1,125),(106,24,3,'android daBeast2',250,3,750),(107,3,3,'zapatos',36.17,1,36.17);
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ CREATE TABLE `categorias` (
   `activo_ct` varchar(2) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_ct`),
   UNIQUE KEY `id_ct_UNIQUE` (`id_ct`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'CAMISAS','2013-11-16','S'),(2,'ZAPATOS','2013-11-10','S'),(3,'PANTALONES','2013-11-10','S'),(4,'ELECTRODOMESTICO','2013-11-10','S'),(5,'OTROS','2013-11-10','S'),(7,'BRAND NEW','2013-11-16','S'),(8,'sombreros','2013-11-19','S');
+INSERT INTO `categorias` VALUES (1,'Camisas','2013-11-16','S'),(2,'Zapatos','2013-11-10','S'),(3,'Pantalones','2013-11-10','S'),(4,'Electronicos','2013-11-27','S'),(5,'Otros','2013-11-10','S'),(7,'Brand New','2013-11-16','S'),(8,'Sombreros','2013-11-27','S'),(9,'Accesorios','2013-11-27','S'),(10,'Belleza','2013-11-27','S');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +91,7 @@ CREATE TABLE `cliente` (
   `tel` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
   `compra_pendiente` varchar(250) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'jose','guillen','damgel','e703908953979aba5049ec2e83f4e104282abe84','2013-11-22','deakill@hotmail.com','79263016','5295110b817a5');
+INSERT INTO `cliente` VALUES (1,'jose','guillen','damgel','e703908953979aba5049ec2e83f4e104282abe84','1992-11-22','deakill@hotmail.com','79263016','529663200311a'),(3,'jose ariel','rivas','jrivas','e703908953979aba5049ec2e83f4e104282abe84','1994-07-14','jariel@yahoo.com','79263016',NULL);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `compra` (
   `total` float DEFAULT NULL,
   PRIMARY KEY (`idcompra`),
   UNIQUE KEY `idcompra_UNIQUE` (`idcompra`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `compra` (
 
 LOCK TABLES `compra` WRITE;
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
-INSERT INTO `compra` VALUES (16,'5295110b817a5',1,'2013-11-26',1,0),(17,'5295110b817a5',1,'2013-11-26',1,0);
+INSERT INTO `compra` VALUES (16,'5295110b817a5',1,'2013-11-26',1,0),(17,'5295110b817a5',1,'2013-11-26',1,0),(18,'529663200311a',1,'2013-11-27',10005,0),(19,'529663200311a',1,'2013-11-27',10005,0);
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +175,7 @@ CREATE TABLE `detalles_compra` (
   `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`idcompra_d`),
   UNIQUE KEY `idcompra_d` (`idcompra_d`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `detalles_compra` (
 
 LOCK TABLES `detalles_compra` WRITE;
 /*!40000 ALTER TABLE `detalles_compra` DISABLE KEYS */;
-INSERT INTO `detalles_compra` VALUES (26,1,'28','5295110b817a5','2013-11-26 15:22:19'),(27,1,'28','5295110b817a5','2013-11-26 15:22:19');
+INSERT INTO `detalles_compra` VALUES (26,1,'28','5295110b817a5','2013-11-26 15:22:19'),(27,1,'28','5295110b817a5','2013-11-26 15:22:19'),(28,1,'28','529663200311a','2013-11-27 15:24:48'),(29,1,'28','529663200311a','2013-11-27 15:24:48'),(30,1,'36.17','529663200311a','2013-11-27 15:24:48'),(31,1,'150','529663200311a','2013-11-27 15:24:48'),(32,1,'250','529663200311a','2013-11-27 15:24:48'),(33,1,'250','529663200311a','2013-11-27 15:24:48'),(34,1,'280000','529663200311a','2013-11-27 15:24:48');
 /*!40000 ALTER TABLE `detalles_compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (3,'Images/productos/zapato1.jpg','zapatos','calidad mundial garantizada','ZAPATOS',36.17,'S',250,'2013-11-25','polo',15,'SMALL','NEGRO'),(13,'Images/productos/527eb966d64ba102506.jpg','camisa sport','testing testing testing ','CAMISAS',17.25,'S',250,'2013-11-25','adidas',10,'SMALL','AZUL'),(14,'Images/productos/5280096c4410611-(70)b.jpg','New Jacket','three pieces jacket','CAMISAS',120.99,'S',250,'2013-11-23','nike',10,'MEDIUM','BLANCO'),(17,'Images/productos/5287c0fbec473Telefono.jpg','TELEFONO CLASICO','BRAND NEW PRODUCT','ELECTRODOMESTICO',125,'S',0,'2013-11-23','CLASSIC',10,'SMALL','CELESTE'),(18,'Images/productos/5287c130cd9432566829399_86e0600664_m_thumb.jpg','producto de prueba','BRAND NEW PRODUCT','ELECTRODOMESTICO',54.0514,'S',250,'2013-11-23','Apple',10,'MEDIUM','ROSADO'),(19,'Images/productos/5287c2e416fe7htc-desire_0.jpg','0000 TELEFONO','BRAND NEW TELEFONO','ELECTRODOMESTICO',125,'S',250,'2013-11-17','HTC',10,NULL,'AMARILLO'),(20,'Images/productos/5287c3c576f58ADS.JPG','BLACKBERRY','BLACKBERRY SD152-01','ELECTRODOMESTICO',150,'S',250,'2013-11-17','BB',10,NULL,'BLANCO'),(21,'Images/productos/528b919259dd5descarga.jpg','sombrero playa','palma','sombreros',28,'S',250,'2013-11-19','ninguna',8,NULL,'VERDE'),(22,'Images/productos/3570-android.jpg','android daBeast','KITKAT VERSION','ELECTRODOMESTICO',250,'S',0,'2013-11-23','google',150,'small','VERDE'),(24,'../Images/productos/5291020a85e4bandroid_eating_apple.png','android daBeast2','KITKAT VERSION2','ELECTRODOMESTICO',250,'S',250,'2013-11-23','google',100,'medium','VERDE');
+INSERT INTO `producto` VALUES (3,'Images/productos/zapato1.jpg','zapatos','calidad mundial garantizada','Zapatos',36.17,'S',250,'2013-11-25','polo',15,'S','BLANCO'),(13,'Images/productos/527eb966d64ba102506.jpg','camisa sport','testing testing testing ','Camisas',17.25,'N',250,'2013-11-26','adidas',10,'S','AZUL'),(14,'Images/productos/5280096c4410611-(70)b.jpg','New Jacket','three pieces jacket','Camisas',120.99,'S',250,'2013-11-23','nike',10,'M','NEGRO'),(17,'Images/productos/5287c0fbec473Telefono.jpg','TELEFONO CLASICO','BRAND NEW PRODUCT','Electronicos',125,'S',0,'2013-11-23','CLASSIC',10,'M','ROJO'),(18,'Images/productos/5287c130cd9432566829399_86e0600664_m_thumb.jpg','producto de prueba','BRAND NEW PRODUCT','Electronicos',54.0514,'S',250,'2013-11-23','Apple',10,'S','ROSADO'),(19,'Images/productos/5287c2e416fe7htc-desire_0.jpg','0000 TELEFONO','BRAND NEW TELEFONO','Electronicos',125,'S',250,'2013-11-17','HTC',10,'XE','AMARILLO'),(20,'Images/productos/5287c3c576f58ADS.JPG','BLACKBERRY','BLACKBERRY SD152-01','Electronicos',150,'S',250,'2013-11-17','BB',10,'XM','BLANCO'),(21,'Images/productos/528b919259dd5descarga.jpg','sombrero playa','palma','Sombreros',28,'S',250,'2013-11-19','ninguna',8,'XS','NEGRO'),(22,'Images/productos/3570-android.jpg','android daBeast','KITKAT VERSION','Electronicos',250,'S',0,'2013-11-23','google',150,'S','BLANCO'),(24,'../Images/productos/5291020a85e4bandroid_eating_apple.png','android daBeast2','KITKAT VERSION2','Electronicos',250,'S',250,'2013-11-23','google',100,'M','CELESTE');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `tallas` (
 
 LOCK TABLES `tallas` WRITE;
 /*!40000 ALTER TABLE `tallas` DISABLE KEYS */;
-INSERT INTO `tallas` VALUES (1,'small','2013-10-10','S'),(2,'extra small','2013-10-10','S'),(3,'medium','2013-10-10','S'),(4,'extra medium','2013-10-10','S'),(5,'large','2013-10-10','S'),(6,'extra large','2013-10-10','S');
+INSERT INTO `tallas` VALUES (1,'S','2013-10-10','S'),(2,'M','2013-10-10','S'),(3,'X','2013-10-10','S'),(4,'XL','2013-10-10','S'),(5,'XM','2013-10-10','S'),(6,'XS','2013-10-10','S');
 /*!40000 ALTER TABLE `tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,4 +289,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-26 15:28:38
+-- Dump completed on 2013-11-27 17:45:08
