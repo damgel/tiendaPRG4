@@ -100,7 +100,7 @@ if (isset($_GET['eliminar'])) {
         </style>
     </head>
     <body>
-        <?php include_once '../Includes/header.php'; ?>
+        <?php include_once '../Includes/header_admin.php'; ?>
         <div class="container">
             <fieldset class="row1">
                 <legend><?php echo $header_nombre ?></legend>

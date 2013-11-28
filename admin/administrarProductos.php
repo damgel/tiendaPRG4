@@ -97,7 +97,7 @@
     </head>
     <body>
 
-        <?php include_once '../Includes/header.php'; ?>
+        <?php include_once '../Includes/header_admin.php'; ?>
         <div class="container">
             <div class="row">
                 <div class="acciones">

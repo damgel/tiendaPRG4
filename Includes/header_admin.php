@@ -72,7 +72,8 @@
             <ul class="menu">
                 <li><a href="../index.php">Inicio</a></li>
                 <li><a href="../cesta.php">Carrito de compras</a></li>
-                
+                <li><a href="../admin/administrarProductos.php">Panel Administrativo</a></li>
+                <li><a href="../admin/administrarCategorias.php">Administrar Categorias</a></li>
             </ul>
             <div class="right-login">
                 <?php

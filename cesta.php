@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';                                                                       ?>
+<?php //include_once 'Includes/session.php';                                                                        ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -129,7 +129,8 @@
                         //END ENVIO DE EMAIL
                         //QUERY QUE ELIMINA TODOS LOS PRODUCTOS DESPUES DE PROCESAR UNA COMPRA
                         mysql_query("DELETE FROM `carrito` WHERE id_u = $id_usuario ");
-                        header("Location: exito.php");
+                        //header("Location: exito.php");
+                        echo '<meta http-equiv=refresh content=0;URL=exito.php />';
                     }
                     ?>
                 </form>
