@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';                                                                     ?>
+<?php //include_once 'Includes/session.php';                                                                       ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -86,7 +86,7 @@
                         while ($row = mysql_fetch_array($result)) {
                             $id_p = $row['id_p'];
                             $nombre_p = $row['nombre'];
-                            echo $nombre_p;
+
                             if ($pivotCompra == 0) {
                                 $nombre_p = $row['nombre'];
 
@@ -115,8 +115,8 @@
                         $email_subject = "Notificacion de compra #" . $hash_compra;
 
                         $email_message .= "Motivo: " . "Compra procesada exitosamente!" . "\n";
-                        $email_message = $c_nombre . " " . $c_apellido . "Muchisimas gracias por preferir nuestros productos!!!:\n\n";
-                        $email_message .= "Mensaje: " . "Para ver el detalle de tu compra ve a tu perfil <a href='https://localhost:/profile.php'>Resgistro de compras</a>" . "\n\n";
+                        $email_message = "<b>$c_nombre ' ' . $c_apellido </b>" . " Muchisimas gracias por preferir nuestros productos!!!:\n\n";
+                        $email_message .= 'Para ver el detalle de tu compra ve a tu perfil <a href="https://localhost:/profile.php">Resgistro de compras</a>" . "\n\n';
 
 
                         // Ahora se envía el e-mail usando la función mail() de PHP
@@ -129,7 +129,7 @@
                         //END ENVIO DE EMAIL
                         //QUERY QUE ELIMINA TODOS LOS PRODUCTOS DESPUES DE PROCESAR UNA COMPRA
                         mysql_query("DELETE FROM `carrito` WHERE id_u = $id_usuario ");
-                        echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
+                        header("Location: exito.php");
                     }
                     ?>
                 </form>
