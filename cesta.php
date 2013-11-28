@@ -1,4 +1,4 @@
-<?php //include_once 'Includes/session.php';                                                            ?>
+<?php //include_once 'Includes/session.php';                                                                     ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -102,7 +102,31 @@
                             $updateExistencia = "UPDATE producto set existencia_p=((select existencia_p)-$cantidad_unitatia) where id_p=$id_p";
                             mysql_query($updateExistencia) or die(mysql_error());
                         }
+                        $qEmail = "select nombre, apellido, correo from cliente where idcliente=$id_usuario";
+                        $getEmail = mysql_query($qEmail) or die(mysql_error());
+                        while ($rowe = mysql_fetch_array($getEmail)) {
+                            $email_ready = $rowe['correo'];
+                            $c_nombre = $rowe['nombre'];
+                            $c_apellido = $rowe['apellido'];
+                        }
+                        //// BEGIN ENVIO DE EMAIL
+                        // Debes editar las próximas dos líneas de código de acuerdo con tus preferencias
+                        $email_to = $email_ready;
+                        $email_subject = "Notificacion de compra #" . $hash_compra;
 
+                        $email_message .= "Motivo: " . "Compra procesada exitosamente!" . "\n";
+                        $email_message = $c_nombre . " " . $c_apellido . "Muchisimas gracias por preferir nuestros productos!!!:\n\n";
+                        $email_message .= "Mensaje: " . "Para ver el detalle de tu compra ve a tu perfil <a href='https://localhost:/profile.php'>Resgistro de compras</a>" . "\n\n";
+
+
+                        // Ahora se envía el e-mail usando la función mail() de PHP
+                        $headers = 'From: ' . $email_from . "\r\n" .
+                                'Reply-To: ' . $email_from . "\r\n" .
+                                'X-Mailer: PHP/' . phpversion();
+                        @mail($email_to, $email_subject, $email_message, $headers);
+
+
+                        //END ENVIO DE EMAIL
                         //QUERY QUE ELIMINA TODOS LOS PRODUCTOS DESPUES DE PROCESAR UNA COMPRA
                         mysql_query("DELETE FROM `carrito` WHERE id_u = $id_usuario ");
                         echo "COMPRA PROCESADA EXITOSAMENTE!!!  .<br />";
