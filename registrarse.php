@@ -45,14 +45,14 @@
             <ol>
                 <li>
                     <label for="username">Username:</label> 
-                    <input type="text" name="username" value="" id="username" />
+                    <input type="text" name="username" value="" id="username" required/>
                 </li>
                 <li>
                     <label for="password">Password:</label>
-                    <input type="password" name="password" value="" id="password" />
+                    <input type="password" name="password" value="" id="password" required/>
                 </li>
             </ol>
-            <input type="submit" name="submit" value="Submit" />
+            <input type="submit" name="submit" value="Submit" required/>
             <p>
                 <a href="index.php">Cancel</a>
             </p>
