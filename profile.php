@@ -57,7 +57,7 @@
 
                     <ul class="nav nav-tabs" id="myTab">
                         <li class="active"><a href="#Perfil">Perfil</a></li>
-                        <li class=""><a href="#Historial de compras">Historial de compras</a></li>
+                        <li class=""><a href="#Historial">Historial de compras</a></li>
 
                     </ul>
 
@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane " id="Historial de compras">
+                    <div class="tab-pane " id="Historial">
 
                         <div class="row">
                             <div class="col-md-12">
