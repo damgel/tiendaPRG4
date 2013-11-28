@@ -140,9 +140,9 @@
                     echo "<td valign='top'>" . nl2br($row['color_p']) . "</td>";
                     echo "<td valign='top'>" . nl2br($row['existencia_p']) . "</td>";
                     if ($row['activo_p'] == "S") {
-                        $var_activo = "SI";
+                        $var_activo = "<img src='img/success.png'></img>";
                     } else {
-                        $var_activo = "NO";
+                        $var_activo = "<img src='img/error.png'></img>";
                     }
                     echo "<td valign='top'>" . $var_activo . "</td>";
                     echo "<td valign='top'><a href=editarProducto.php?activar={$row['id_p']}>Activar</a><br><a href=editarProducto.php?desactivar={$row['id_p']}>Desactivar</a><br><hr class='divhr'><a href=editarProducto.php?id={$row['id_p']}>Editar</a><br> <a href=editarProducto.php?eliminar={$row['id_p']}>Eliminar</a></td> ";
