@@ -33,6 +33,7 @@ if (isset($_POST['Enviar'])) {
         <script src="assets/js/jquery-v1.10.2.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/holder.js"></script>
+        <script src="assets/js/validarRegCliente.js"></script>
 
     </head>
     <style>
