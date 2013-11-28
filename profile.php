@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <script src="assets/js/jquery-v1.10.2.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+  
+      <link rel="stylesheet" href="assets/css/bootstrap.css">
+     <script src="assets/js/holder.js"></script>
     <style>
         fieldset
         {
@@ -18,6 +21,12 @@
         }
     </style>
     <body>
+    
+    
+    
+    
+    
+    
         <?php include_once 'Includes/header.php'; ?>
         <div class="contenedor">
 
@@ -41,7 +50,27 @@
                 $row = mysql_fetch_array(mysql_query("SELECT * FROM `cliente` WHERE `idcliente` = '$idcliente' "));
                 ?>
 
-                <form action='' method='POST'> 
+
+
+
+<div class="jumbotron">
+
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a href="#Perfil">Perfil</a></li>
+                        <li class=""><a href="#Historial de compras">Historial de compras</a></li>
+                        
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="Perfil">
+                            <div class="row">
+                                <div class="col-md-12">
+                                   
+                                
+                                
+                                
+                                
+                                    <form action='' method='POST'> 
                     <fieldset>
                         <div><b>Nombre:</b><br /><input type='text' name='nombre' value='<?= stripslashes($row['nombre']) ?>' /></div> 
                         <div><b>Apellido:</b><br /><input type='text' name='apellido' value='<?= stripslashes($row['apellido']) ?>' /></div> 
@@ -54,6 +83,46 @@
                     </fieldset>
                 </form> 
             <? } ?> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane " id="Historial de compras">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1>Historial de compras</h1>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    ............................
+                                </div>
+                            </div> 
+                        </div>
+
+                    </div>
+
+                    <script>
+                        $('#myTab a').click(function(e) {
+                            e.preventDefault();
+                            $(this).tab('show');
+                        });
+                    </script>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                
 
         </div>
     </body>
