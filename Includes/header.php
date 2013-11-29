@@ -77,7 +77,7 @@
             <div class="right-login">
                 <?php
                 session_start();
-                $urlactual = $_SERVER['REQUEST_URI'];
+              
                 if (!empty($_SESSION['username'])) {
                     $nombre = $_SESSION['username'];
                     echo "$nombre";

@@ -78,13 +78,14 @@
             <div class="right-login">
                 <?php
                 session_start();
-                $urlactual = $_SERVER['REQUEST_URI'];
-                if (!empty($_SESSION['username'])) {
-                    $nombre = $_SESSION['username'];
+                if (!empty($_SESSION['usernamea'])) {
+                    $nombre = $_SESSION['usernamea'];
                     echo "$nombre";
-                    echo '<a href="../logoff.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Cerra Sesion</a>';
+                    echo '<a href="../admin/logout.php" class="logout"><span class="glyphicon glyphicon-log-out"></span> Cerra Sesion</a>';
                     //echo "<script>alert('$urlactual')</script>";
-                } 
+                } else {
+                    header("Location: ../admin/login.php");
+                }
                 ?>
             </div>
         </div>

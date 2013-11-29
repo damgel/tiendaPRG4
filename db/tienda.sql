@@ -258,12 +258,12 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
+  `idadmin` int(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
   `usuario` varchar(20) COLLATE latin1_general_ci DEFAULT NULL,
-  `password` varchar(120) COLLATE latin1_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+  `password` varchar(250) COLLATE latin1_general_ci DEFAULT NULL,
+  PRIMARY KEY (`idadmin`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,6 +272,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'jose manuel','damgel','e703908953979aba5049ec2e83f4e104282abe84'),(2,'karla flores','karla','e703908953979aba5049ec2e83f4e104282abe84');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,4 +289,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-28  3:41:26
+-- Dump completed on 2013-11-28  6:32:34
